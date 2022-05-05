@@ -1867,11 +1867,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
+      "projectUniqueName": "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
       "projectName": "AnonymRequest.Storage",
-      "projectPath": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
+      "projectPath": "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
       "packagesPath": "C:\\Users\\snetk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\obj\\",
+      "outputPath": "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

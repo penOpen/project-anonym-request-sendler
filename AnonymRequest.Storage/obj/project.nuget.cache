@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U9vrzgvcYDPdIslAmW1oPbghEsGmg9ZqN/xxhO5mk2HwgW7sWzMwQSHc2Yt0HchhFBnLzJLMmkNWJfdj1HoMmA==",
+  "dgSpecHash": "7jK07ys3VI3tL2HWPqavqiO9n/u7ABJbn35GjQEM4DmTZO9a8BFxvX36UGhX56b+Wbc+fuAw1KI4wCyf2d3fxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
+  "projectFilePath": "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\snetk\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\snetk\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
