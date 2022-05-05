@@ -1,0 +1,14 @@
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\bin\Debug\net6.0\AnonymRequest.Storage.deps.json
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\bin\Debug\net6.0\AnonymRequest.Storage.runtimeconfig.json
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\bin\Debug\net6.0\AnonymRequest.Storage.dll
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\bin\Debug\net6.0\AnonymRequest.Storage.pdb
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\AnonymRequest.Storage.csproj.AssemblyReference.cache
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\AnonymRequest.Storage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\AnonymRequest.Storage.AssemblyInfoInputs.cache
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\AnonymRequest.Storage.AssemblyInfo.cs
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\AnonymRequest.Storage.csproj.CoreCompileInputs.cache
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\AnonymRequest.Storage.dll
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\refint\AnonymRequest.Storage.dll
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\AnonymRequest.Storage.pdb
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\AnonymRequest.Storage.genruntimeconfig.cache
+C:\Users\snetk\source\repos\project-anonym-request-sendler\AnonymRequest\AnonymRequest.Storage\obj\Debug\net6.0\ref\AnonymRequest.Storage.dll
