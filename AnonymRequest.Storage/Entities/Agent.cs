@@ -4,7 +4,6 @@
 
     [Key]
     public int Id { get; set; } // ID в БД
-    [Required]
     public string Name { get; set; } //Имя
     public string Working_hours { get; set; } //Часы работы формата: XX:XX - XX:XX
     public string ContactInfo { get; set; } //Номер телефона

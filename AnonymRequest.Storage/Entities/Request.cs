@@ -14,9 +14,6 @@ public class Request
     public int UserToken { get; set; } //Ключ для обращения к связанному User
     public int StatusId {get; set;} //Хранить ID на status
 
-    [ForeignKey(nameof(UserToken))] //Внешний ключ для обращения к User 
-    public virtual User User { get; set; }
-
     [ForeignKey(nameof(InstationId))] //Внешний ключ для обращения к Instantion
     public virtual Instantion Instantion { get; set; }
 

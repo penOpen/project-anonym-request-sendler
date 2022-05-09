@@ -13,4 +13,5 @@ public class Context : DbContext
     public DbSet<Instantion> Instations { get; set; }
     public DbSet<Agent> Agents { get; set; }
     public DbSet<Status> Statuses { get; set; }
+    public DbSet<Moderator> Moderators { get; set; }
 }
