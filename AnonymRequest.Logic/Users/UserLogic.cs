@@ -1,38 +1,23 @@
-﻿namespace AnonymRequest.Logic.Users;
+﻿using System.Text.Json;
+using AnonymRequest;
+namespace AnonymRequest.Logic.Users;
 
 public class UserLogic : IUser
 {
     private readonly Context _context;
-
-
-    public async Task  Create_User()
+    public UserLogic(Context context)
     {
-        var new_token = System.Guid.NewGuid().ToString() ;
-        var user = new User {Token = new_token};
-
-        _context.Users.Add(user);
-
-        await _context.SaveChangesAsync();
-
+        _context = context;
     }
 
-    public async Task Find_User(string Token)
+    public Task Get => throw new NotImplementedException();
+
+    public async Task Create()
     {
-      var user = await _context.Users.FindAsync(Token);
-    }
-}
 
-
-/*public class UserLogic : IUser
-{
-    private readonly Context _context;
-
-    public async Task Create(string token)
-    {
-        var user = new User {Token = token};
+        var user = new User {Token = System.Guid.NewGuid().ToString()};
 
         _context.Users.Add(user);
-
         await _context.SaveChangesAsync();
     }
 
@@ -47,8 +32,10 @@ public class UserLogic : IUser
         await _context.SaveChangesAsync();
     }
 
-    public async Task<IList<User>> GetAll() => await _context.Users.ToListAsync();
-
-}*/
+    public async Task FindUser(string Token) 
+    {
+        var user = _context.Users.Find(Token);
+    }
+}
 
 

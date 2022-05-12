@@ -1,20 +1,12 @@
-﻿using AnonymRequest.Storage.Entities;
+﻿using System.Text.Json;
+using AnonymRequest.Storage.Entities;
 
 namespace AnonymRequest.Logic.Users;
 
-public interface IUser 
+public interface IUser
 {
-    Task Create_User();
-    Task Find_User(string Token);
-    //createUser 
-}
-
-
-
-
-/*public interface IUser
-{
-    Task<IList<User>>GetAll();
-    Task Create(string token);
+    Task FindUser(string Token);
+    Task Create();
     Task Delete(int Id);
-}*/
+    Task Get { get; }
+}

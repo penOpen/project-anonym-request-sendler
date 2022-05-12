@@ -7,6 +7,7 @@ var services = builder.Services;
 
 // Add services to the container.
 services.AddControllersWithViews();
+services.AddScoped<IUser, UserLogic>();
 
 //Add Database Context
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
