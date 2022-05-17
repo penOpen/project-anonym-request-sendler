@@ -3,13 +3,14 @@ namespace AnonymRequest.Storage.Entities
     public class Mod
     {
         [Key]
-        public int Id { get; set; }//id модера
+        public int Id { get; set; }//id пїЅпїЅпїЅпїЅпїЅпїЅ
 
-        Guid token;// guid модера
-        int avatar { get; set; } //ссылка на аватар (id файла)
+        Guid token;// guid пїЅпїЅпїЅпїЅпїЅпїЅ
+        int avatar { get; set; } //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (id пїЅпїЅпїЅпїЅпїЅ)
 
         [ForeignKey(nameof(avatar))]
         public virtual Files Avatar { get; set; }
+        //
 
     }
 }

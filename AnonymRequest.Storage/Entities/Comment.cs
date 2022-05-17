@@ -3,14 +3,15 @@ namespace AnonymRequest.Storage.Entities
     public class Comment
     {
         [Key]
-        public int Id { get; set; } // внутренний ключ
-        bool is_mod { get; set; } // Модер/пользователь
+        public int Id { get; set; } // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        bool is_mod { get; set; } // пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        string text { get; set; } // текст коммента
+        string text { get; set; } // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        long time { get; set; } // время написания коммента 
+        long time { get; set; } // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
         
 
 
     }
+    //
 }

@@ -9,6 +9,6 @@ public class TicketInfo
     public string description { get; set; } // текст
 
     [ForeignKey(nameof(files))]
-    public virtual Files Files { get; set; }
+    public virtual Files Files { get; set; }//
 
 }

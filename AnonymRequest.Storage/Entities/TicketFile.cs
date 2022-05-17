@@ -13,5 +13,5 @@ public class TicketFiles
     public virtual Files Files { get; set; }
 
     [ForeignKey(nameof(ticket_id))]
-    public virtual Tickets Ticket { get; set; }
+    public virtual Tickets Ticket { get; set; }//
 }

@@ -16,6 +16,6 @@ namespace AnonymRequest.Storage.Entities
         public virtual TicketInfo Ticketinfo { get; set; }
 
         [ForeignKey(nameof(id_comments))]
-        public virtual Comment Comment { get; set; }
+        public virtual Comment Comment { get; set; }//
     }
 }

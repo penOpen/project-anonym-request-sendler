@@ -3,10 +3,10 @@ namespace AnonymRequest.Storage.Entities
     public class Types
     {
         [Key]
-        public int Id { get; set; } //id типа жалобы
+        public int Id { get; set; } //id пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-        public string value { get; set; } // название типа
-        public string description { get; set; } // описание
-       
+        public string value { get; set; } // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        public string description { get; set; } // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+       //
     }
 }

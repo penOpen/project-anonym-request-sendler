@@ -4,14 +4,14 @@ namespace AnonymRequest.Storage.Entities
     {
         [Key]
         public int Id { get; set; }
-        public long lifeend; // принимаем время токена
+        public long lifeend; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-        public string token { get; set; } // токен
+        public string token { get; set; } // пїЅпїЅпїЅпїЅпїЅ
 
-        public int ticket_id { get; set; } // id тикета
+        public int ticket_id { get; set; } // id пїЅпїЅпїЅпїЅпїЅпїЅ
 
         [ForeignKey(nameof(ticket_id))]
-        public virtual Tickets Ticket { get; set; }
+        public virtual Tickets Ticket { get; set; }//
 
     }
 }
