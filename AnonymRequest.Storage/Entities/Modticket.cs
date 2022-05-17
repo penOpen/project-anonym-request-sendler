@@ -1,10 +1,11 @@
-namespace AnonymRequest.Storage.Entities
-{
-    public class Modticket
-    {
-        [Key]
-        int mod_id;
-        [Key]
-        int ticket_id;
-    }
-}
+//namespace AnonymRequest.Storage.Entities
+//{
+//    [Keyless]
+//    public class Modticket
+//    {
+//        [ForeignKey]
+//        int mod_id { get; set; }
+//        [FoKey]
+//        int ticket_id { get; set; }
+//    }
+//}

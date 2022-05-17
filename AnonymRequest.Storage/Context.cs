@@ -8,9 +8,16 @@ public class Context : DbContext
     {
     }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<Request> Requests { get; set; }
-    public DbSet<Instantion> Instations { get; set; }
-    public DbSet<Agent> Agents { get; set; }
-    public DbSet<Status> Statuses { get; set; }
+    public DbSet<Comment> Comments { get; set; }
+    public DbSet<CommentFiles> CommentFiles { get; set; }
+    public DbSet<Files> Files { get; set; }
+    public DbSet<Mod> Mods { get; set; }
+    public DbSet<TicketComment> TicketComments { get; set; }
+    public DbSet<TicketFiles> TicketFiles { get; set; }
+    public DbSet<Ticketguid> Ticketguids { get; set; }
+    public DbSet<TicketInfo> TicketInfos { get; set; }
+    public DbSet<Tickets> Tickets { get; set; }
+    public DbSet<TicketToken> TicketTokens { get; set; }
+    public DbSet<Types> Types { get; set; }
+
 }

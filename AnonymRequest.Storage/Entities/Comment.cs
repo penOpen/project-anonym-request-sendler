@@ -2,10 +2,15 @@ namespace AnonymRequest.Storage.Entities
 {
     public class Comment
     {
-        int id;
-        bool is_mod;
-        string text;
-        string time = DateTime.Now.ToString("Hh:mm:ss");
-        [ForeignKey(nameof(id))]
+        [Key]
+        public int Id { get; set; } // внутренний ключ
+        bool is_mod { get; set; } // Модер/пользователь
+
+        string text { get; set; } // текст коммента
+
+        long time { get; set; } // время написания коммента 
+        
+
+
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 namespace AnonymRequest.Storage.Entities;
-
 public class TicketInfo
 {   
-     int id;
-     string name;
-    string string_description;
-    [ForeignKey(nameof(id))]
-    [ForeignKey(nameof(name))]
+    [Key]
+    public int Id { get; set; } //id жалобы
+    int files { get; set; } // id файла
+    string description { get; set; } // текст
+
+    [ForeignKey(nameof(files))]
+    public virtual Files Files { get; set; }
+
 }
