@@ -1,4 +1,4 @@
-using AnonymRequest.Logic.Users;
+
 using AnonymRequest.Storage;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +11,6 @@ services.AddControllersWithViews();
 //Add Database Context
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 services.AddDbContext<Context>(param => param.UseSqlServer(connectionString));
-services.AddScoped<IUser, UserLogic>();
 
 var app = builder.Build();
 

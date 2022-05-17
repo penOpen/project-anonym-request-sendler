@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj": {}
+    "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj": {}
   },
   "projects": {
-    "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj": {
+    "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
+        "projectUniqueName": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
         "projectName": "AnonymRequest.Storage",
-        "projectPath": "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
-        "packagesPath": "C:\\Users\\snetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\snetk\\OneDrive\\Документы\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\obj\\",
+        "projectPath": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
+        "packagesPath": "C:\\Users\\асер\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\snetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\асер\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -78,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

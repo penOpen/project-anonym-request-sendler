@@ -3,11 +3,11 @@ namespace AnonymRequest.Storage.Entities
     public class Tickets
     {
         [Key]
-        public int Id { get; set; } // id тикета
-        public int id_mod { get; set; } // id модера
+        public int Id { get; set; } // id пїЅпїЅпїЅпїЅпїЅпїЅ
+        public int id_mod { get; set; } // id пїЅпїЅпїЅпїЅпїЅпїЅ
         int id_ticketinfo { get; set; }// id ticketinfo
-        int id_comments { get; set; }// id коммента
-        int status { get; set; } // 1 из 4 возможных статусов
+        int id_comments { get; set; }// id пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        int status { get; set; } // 1 пїЅпїЅ 4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         [ForeignKey(nameof(id_mod))]
         public virtual Mod Mod { get; set; }

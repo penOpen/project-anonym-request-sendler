@@ -3,7 +3,7 @@
     {
         [Key]
         public int Id { get; set; }// id файла
-        string Name { get; set; }// имя файла
-        string uri { get; set; } // uri файла
+        public string Name { get; set; }// имя файла
+        public string url { get; set; } // uri файла
 }
 
