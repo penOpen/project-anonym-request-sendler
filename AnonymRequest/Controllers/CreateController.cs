@@ -41,7 +41,7 @@ namespace AnonymRequest.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public async Task Create([FromBody] CreateRequest _js_file)
+        public async Task<string> Create([FromBody] CreateRequest _js_file)
         {
             int len = _js_file.files.Length;
             js_file file = new js_file();
@@ -63,20 +63,10 @@ namespace AnonymRequest.Controllers
                 Ticketfiles.Bind_Ticket_File(id_file, id_ticketinfo);
             }
 
-            
-            /*var info = new js_parsed(_js_file.type, _js_file.name,_js_file.description);
-            var files = new js_file(_js_file.js_name, _js_file.js_code);
+            var id_tickets = await Tickets.Create_Tickets(id_ticketinfo);
+            var push_token = await Tickettoken.Create_Ticket_Token(id_tickets);
 
-            Console.WriteLine("Done");
-            var id_file = await Files.Push_File(files);
-            var id_comment = await Comments.Create_Comment();
-            Console.WriteLine("Done");
-            var id_ticket = await Ticketinfo.Generate_Ticket(info, id_file, id_comment);
-            Console.WriteLine("Done");
-            var Token = await Ticketguid.Generate_Token(id_ticket);
-            var id_ticket_tickets = await Tickets.Create_Tickets(info.type, id_ticket);
-            var master_key = await Tickettoken.Create_Ticket_Token(id_ticket_tickets, Token);
-            return master_key;*/
+            return push_token;
         }
 
 

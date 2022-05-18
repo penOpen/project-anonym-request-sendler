@@ -11,10 +11,10 @@ namespace AnonymRequest.Logic.TICKETS
         }
 
 
-        public async Task<int> Create_Tickets(string type, int ticket_info_id)
-        {
-            int id_of_type = _context.Types.OrderByDescending(p => p.Id).LastOrDefault().Id;
-            var new_tickets = new Tickets{id_mod = id_of_type, id_ticketinfo = ticket_info_id};
+        public async Task<int> Create_Tickets(int ticket_info_id)
+        {   
+            var token = new Guid();
+            var new_tickets = new Tickets{id_ticketinfo = ticket_info_id};
             _context.Add(new_tickets);
             await _context.SaveChangesAsync();
             int id_of_ticket = _context.Types.OrderByDescending(p => p.Id).LastOrDefault().Id;

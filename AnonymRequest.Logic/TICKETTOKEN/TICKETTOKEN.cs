@@ -10,18 +10,32 @@ namespace AnonymRequest.Logic.TICKETTOKEN
             _context = context;
         }
 
-        public async Task<string> Create_Ticket_Token(int ticketid, Guid guid)
+        public async Task<string> Create_Ticket_Token(int ticketid)
         {
-            var s_guid = System.Convert.ToString(guid);
-            int key;
-            int.TryParse(string.Join("", s_guid.Where(c => char.IsDigit(c))), out key);
-            string s_key = System.Convert.ToString(key);
-            var new_ticket_token = new TicketToken{key_token = s_key, ticket_id = ticketid};
-            _context.Add(new_ticket_token);
-            await _context.SaveChangesAsync();
-
-            return s_key;
-
+          
+        var token = TokenGen(10);
+        var new_tickettoken = new TicketToken{key_token = token, ticket_id = ticketid};
+        _context.Add(new_tickettoken);
+        await _context.SaveChangesAsync();
+        return token; 
         }
+        private string TokenGen(int length)
+        {
+        string token = "";
+        var r = new Random();
+        for ( int k = 0; k < length; k++ )
+        {
+            switch (r.Next(1, 3))
+            {
+                case 1:
+                    token += (char)r.Next(97, 123);
+                    break;
+                case 2:
+                    token += (char)r.Next(65, 91);
+                    break;
+            }
+        }
+        return token;
     }
+}
 }

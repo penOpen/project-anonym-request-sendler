@@ -12,9 +12,8 @@ public class Context : DbContext
     public DbSet<CommentFiles> CommentFiles { get; set; }
     public DbSet<Files> Files { get; set; }
     public DbSet<Mod> Mods { get; set; }
-    public DbSet<TicketComment> TicketComments { get; set; }
     public DbSet<TicketFiles> TicketFiles { get; set; }
-    public DbSet<Ticketguid> Ticketguids { get; set; }
+
     public DbSet<TicketInfo> TicketInfos { get; set; }
     public DbSet<Tickets> Tickets { get; set; }
     public DbSet<TicketToken> TicketTokens { get; set; }
