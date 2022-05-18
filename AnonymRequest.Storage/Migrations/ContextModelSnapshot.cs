@@ -161,15 +161,10 @@ namespace AnonymRequest.Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("id_ticket")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("token")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("id_ticket");
 
                     b.ToTable("Ticketguids");
                 });
@@ -349,17 +344,6 @@ namespace AnonymRequest.Storage.Migrations
                     b.Navigation("Files");
 
                     b.Navigation("Ticket");
-                });
-
-            modelBuilder.Entity("AnonymRequest.Storage.Entities.Ticketguid", b =>
-                {
-                    b.HasOne("AnonymRequest.Storage.Entities.Tickets", "Tickets")
-                        .WithMany()
-                        .HasForeignKey("id_ticket")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketInfo", b =>

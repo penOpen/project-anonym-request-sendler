@@ -34,7 +34,7 @@ namespace AnonymRequest.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public async Task Create([FromBody] CreateRequest _js_file)
+        public async Task<string> Create([FromBody] CreateRequest _js_file)
         {
             var info = new js_parsed(_js_file.type, _js_file.name,_js_file.description);
             var files = new js_file(_js_file.js_name, _js_file.js_code);
@@ -46,11 +46,9 @@ namespace AnonymRequest.Controllers
             var id_ticket = await Ticketinfo.Generate_Ticket(info, id_file, id_comment);
             Console.WriteLine("Done");
             var Token = await Ticketguid.Generate_Token(id_ticket);
-
-
-
-
+            return Token.ToString();
         }
+
 
     }
 }

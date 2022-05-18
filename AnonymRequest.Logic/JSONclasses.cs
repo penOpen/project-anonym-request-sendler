@@ -3,9 +3,9 @@ namespace AnonymRequest.Logic
     public class js_parsed
     {
 
-        public string? type;
-        public string? name;
-        public string? description;
+        public string type;
+        public string name;
+        public string description;
 
         public js_parsed(string t, string n, string d)
         {

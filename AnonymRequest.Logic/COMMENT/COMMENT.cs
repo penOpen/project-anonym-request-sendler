@@ -2,7 +2,7 @@
 namespace AnonymRequest.Logic.COMMENT
 
 {
-    public class COMMENT
+    public class COMMENT:ICOMMENT
     {
         private readonly Context _context;
 
@@ -16,11 +16,10 @@ namespace AnonymRequest.Logic.COMMENT
             var new_Comment = new Comment{is_mod = false, text = "-1", time = -1};
              _context.Add(new_Comment);
             var id_comment = new_Comment.Id;
+            Console.WriteLine(id_comment);
             await _context.SaveChangesAsync();
-
-            return id_comment;
-
-
+            int new_comment = _context.Comments.OrderByDescending(p => p.Id).LastOrDefault().Id;
+            return new_comment;
         }
     }
 }

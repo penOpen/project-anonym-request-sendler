@@ -16,8 +16,9 @@ namespace AnonymRequest.Logic.FILES
             _context.Add(new_file);
             var id = new_file.Id;
             await _context.SaveChangesAsync();
-
-            return id;
+            int new_files = _context.Files.OrderByDescending(p => p.Id).LastOrDefault().Id;
+            return new_files;
+          
         }
         
         //finds file linked to ticket and return class js_file

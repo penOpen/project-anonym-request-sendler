@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnonymRequest.Storage.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220518180137_good_life")]
-    partial class good_life
+    [Migration("20220518191407_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -163,15 +163,10 @@ namespace AnonymRequest.Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("id_ticket")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("token")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("id_ticket");
 
                     b.ToTable("Ticketguids");
                 });
@@ -191,7 +186,7 @@ namespace AnonymRequest.Storage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("files")
+                    b.Property<int>("files_id")
                         .HasColumnType("int");
 
                     b.Property<string>("name")
@@ -206,7 +201,7 @@ namespace AnonymRequest.Storage.Migrations
 
                     b.HasIndex("comment_id");
 
-                    b.HasIndex("files");
+                    b.HasIndex("files_id");
 
                     b.ToTable("TicketInfos");
                 });
@@ -353,17 +348,6 @@ namespace AnonymRequest.Storage.Migrations
                     b.Navigation("Ticket");
                 });
 
-            modelBuilder.Entity("AnonymRequest.Storage.Entities.Ticketguid", b =>
-                {
-                    b.HasOne("AnonymRequest.Storage.Entities.Tickets", "Tickets")
-                        .WithMany()
-                        .HasForeignKey("id_ticket")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tickets");
-                });
-
             modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketInfo", b =>
                 {
                     b.HasOne("AnonymRequest.Storage.Entities.Comment", "Comment")
@@ -374,7 +358,7 @@ namespace AnonymRequest.Storage.Migrations
 
                     b.HasOne("AnonymRequest.Storage.Entities.Files", "Files")
                         .WithMany()
-                        .HasForeignKey("files")
+                        .HasForeignKey("files_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

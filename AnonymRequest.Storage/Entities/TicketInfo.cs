@@ -4,6 +4,7 @@ public class TicketInfo
 {   
     [Key]
     public int Id { get; set; } //id жалобы
+
     public int files_id { get; set; } // id файла
     
     public int comment_id {get; set;} //id of comment

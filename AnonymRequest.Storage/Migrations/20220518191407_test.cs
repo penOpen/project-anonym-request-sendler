@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AnonymRequest.Storage.Migrations
 {
-    public partial class Create : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,6 +36,19 @@ namespace AnonymRequest.Storage.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Files", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ticketguids",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    token = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ticketguids", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,8 +116,8 @@ namespace AnonymRequest.Storage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    files = table.Column<int>(type: "int", nullable: false),
-                    comment = table.Column<int>(type: "int", nullable: false),
+                    files_id = table.Column<int>(type: "int", nullable: false),
+                    comment_id = table.Column<int>(type: "int", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     status = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -113,14 +126,14 @@ namespace AnonymRequest.Storage.Migrations
                 {
                     table.PrimaryKey("PK_TicketInfos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TicketInfos_Comments_comment",
-                        column: x => x.comment,
+                        name: "FK_TicketInfos_Comments_comment_id",
+                        column: x => x.comment_id,
                         principalTable: "Comments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TicketInfos_Files_files",
-                        column: x => x.files,
+                        name: "FK_TicketInfos_Files_files_id",
+                        column: x => x.files_id,
                         principalTable: "Files",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -213,26 +226,6 @@ namespace AnonymRequest.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ticketguids",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    token = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    id_ticket = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ticketguids", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Ticketguids_Tickets_id_ticket",
-                        column: x => x.id_ticket,
-                        principalTable: "Tickets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TicketTokens",
                 columns: table => new
                 {
@@ -288,19 +281,14 @@ namespace AnonymRequest.Storage.Migrations
                 column: "ticket_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ticketguids_id_ticket",
-                table: "Ticketguids",
-                column: "id_ticket");
+                name: "IX_TicketInfos_comment_id",
+                table: "TicketInfos",
+                column: "comment_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TicketInfos_comment",
+                name: "IX_TicketInfos_files_id",
                 table: "TicketInfos",
-                column: "comment");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TicketInfos_files",
-                table: "TicketInfos",
-                column: "files");
+                column: "files_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_id_comments",
