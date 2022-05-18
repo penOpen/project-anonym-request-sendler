@@ -7,11 +7,11 @@ public class TicketFiles
 
 
     public int File_id { get; set; } // id файла
-    public int ticket_id { get; set; } // id жалобы
+    public int ticketinfo_id { get; set; } // 
 
     [ForeignKey(nameof(File_id))]
     public virtual Files Files { get; set; }
 
-    [ForeignKey(nameof(ticket_id))]
-    public virtual Tickets Ticket { get; set; }//
+    [ForeignKey(nameof(ticketinfo_id))]
+    public virtual TicketInfo Ticketinfo { get; set; }//
 }

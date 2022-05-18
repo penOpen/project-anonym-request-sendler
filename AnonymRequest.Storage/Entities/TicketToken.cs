@@ -4,7 +4,6 @@ namespace AnonymRequest.Storage.Entities
     {
         [Key]
         public int Id { get; set; }
-        //public long lifeend;
 
         public string key_token { get; set; } 
 

@@ -13,6 +13,5 @@ namespace AnonymRequest.Storage.Entities
 
         [ForeignKey(nameof(comment_id))]
         public virtual Comment Comment { get; set; }
-            //
     }
 }
