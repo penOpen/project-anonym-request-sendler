@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using AnonymRequest.Logic.TICKETGUID;
 using AnonymRequest.Logic.TICKETINFO;
 using AnonymRequest.Logic.FILES;
+using AnonymRequest.Logic.COMMENT;
 using AnonymRequest.Storage;
 using Microsoft.EntityFrameworkCore;
 using AnonymRequest.Logic;
@@ -20,14 +21,15 @@ namespace AnonymRequest.Controllers
         private readonly ITICKETGUID Ticketguid;
         private readonly ITICKETINFO Ticketinfo;
         private readonly IFILES Files;
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly ICOMMENT Comments;
 
-        public CreateController(ITICKETGUID guid, ITICKETINFO info, IFILES files, IHttpClientFactory clientFactory)
+        public CreateController(ITICKETGUID guid, ITICKETINFO info, IFILES files, ICOMMENT comment)
         {
             Ticketguid = guid;
             Ticketinfo = info;
             Files = files;
-            _clientFactory = clientFactory;
+            Comments = comment;
+
         }
 
         [HttpPost]
@@ -39,8 +41,9 @@ namespace AnonymRequest.Controllers
 
             Console.WriteLine("Done");
             var id_file = await Files.Push_File(files);
+            var id_comment = await Comments.Create_Comment();
             Console.WriteLine("Done");
-            var id_ticket = await Ticketinfo.Generate_Ticket(info, id_file);
+            var id_ticket = await Ticketinfo.Generate_Ticket(info, id_file, id_comment);
             Console.WriteLine("Done");
             var Token = await Ticketguid.Generate_Token(id_ticket);
 
