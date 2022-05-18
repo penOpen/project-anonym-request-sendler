@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using AnonymRequest.Logic.FILES;
 using AnonymRequest.Logic.TICKETGUID;
 using AnonymRequest.Logic.TICKETINFO;
+using AnonymRequest.Logic.TICKETS;
+using AnonymRequest.Logic.TICKETTOKEN;
 using AnonymRequest.Logic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,6 +20,8 @@ services.AddScoped<IFILES, FILES>();
 services.AddScoped<ITICKETGUID, TICKETGUID>();
 services.AddScoped<ITICKETINFO, TICKETINFO>();
 services.AddScoped<ICOMMENT, COMMENT>();
+services.AddScoped<ITICKETS, TICKETS>();
+services.AddScoped<ITICKETTOKEN, TICKETTOKEN>();
 ;//Add Database Context
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 services.AddDbContext<Context>(param => param.UseSqlServer(connectionString));
