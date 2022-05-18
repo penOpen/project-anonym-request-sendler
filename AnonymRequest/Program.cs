@@ -1,7 +1,6 @@
 using AnonymRequest.Storage;
 using Microsoft.EntityFrameworkCore;
 using AnonymRequest.Logic.FILES;
-using AnonymRequest.Logic.TICKETGUID;
 using AnonymRequest.Logic.TICKETINFO;
 using AnonymRequest.Logic.TICKETS;
 using AnonymRequest.Logic.TICKETTOKEN;
@@ -17,7 +16,6 @@ var services = builder.Services;
 // Add services to the container.
 services.AddControllersWithViews();
 services.AddScoped<IFILES, FILES>();
-services.AddScoped<ITICKETGUID, TICKETGUID>();
 services.AddScoped<ITICKETINFO, TICKETINFO>();
 services.AddScoped<ICOMMENT, COMMENT>();
 services.AddScoped<ITICKETS, TICKETS>();

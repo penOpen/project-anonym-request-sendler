@@ -10,6 +10,10 @@ namespace AnonymRequest.Storage.Entities
 
         public long time { get; set; } // time set for comment
         
+        public int ticket_id {get; set;}
+
+        [ForeignKey(nameof(ticket_id))]
+        public virtual Tickets Tickets {get; set;}
 
 
     }

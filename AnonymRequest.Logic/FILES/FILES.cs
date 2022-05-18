@@ -9,6 +9,7 @@ namespace AnonymRequest.Logic.FILES
             _context = context;
         }
 
+        //push file in database, return ->  Id
         public async Task<int> Push_File(js_file file )
         {
             
@@ -16,8 +17,8 @@ namespace AnonymRequest.Logic.FILES
             _context.Add(new_file);
             var id = new_file.Id;
             await _context.SaveChangesAsync();
-            int new_files = _context.Files.OrderByDescending(p => p.Id).LastOrDefault().Id;
-            return new_files;
+            int file_id = _context.Files.OrderByDescending(p => p.Id).LastOrDefault().Id;
+            return file_id;
           
         }
         

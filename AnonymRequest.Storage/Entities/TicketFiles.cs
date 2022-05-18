@@ -6,10 +6,10 @@ public class TicketFiles
     public int Id { get; set; } // id 
 
 
-    public int File_id { get; set; } // id файла
+    public int file_id { get; set; } // id файла
     public int ticketinfo_id { get; set; } // 
 
-    [ForeignKey(nameof(File_id))]
+    [ForeignKey(nameof(file_id))]
     public virtual Files Files { get; set; }
 
     [ForeignKey(nameof(ticketinfo_id))]

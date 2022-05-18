@@ -21,9 +21,9 @@ namespace AnonymRequest.Logic.TICKETINFO
         }
 
         //Forms ticket and return it id in Ticketinfo databse
-        public async Task<int> Generate_Ticket(js_parsed info, int id_file, int id_comment)
+        public async Task<int> Generate_Ticket(js_parsed info)
         {
-            var new_ticket = new TicketInfo{ files_id = id_file, comment_id = id_comment, name = info.name, description = info.description,  status = "0",};
+            var new_ticket = new TicketInfo{name = info.name, description = info.description,  status = "0",};
             _context.Add(new_ticket);
             await _context.SaveChangesAsync();
             int id_ticket = _context.TicketInfos.OrderByDescending(p => p.Id).LastOrDefault().Id;
