@@ -9,6 +9,8 @@ using AnonymRequest.Logic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Net.Http.Json;
+using System.Net;
+using AnonymRequest.Models;
 
 namespace AnonymRequest.Controllers
 
@@ -18,39 +20,32 @@ namespace AnonymRequest.Controllers
         private readonly ITICKETGUID Ticketguid;
         private readonly ITICKETINFO Ticketinfo;
         private readonly IFILES Files;
-        private  js_parsed? _js_file;
-        private HttpClient client;
-        public CreateController(ITICKETGUID guid, ITICKETINFO info, IFILES files, HttpClient httpClient)
+        private readonly IHttpClientFactory _clientFactory;
+
+        public CreateController(ITICKETGUID guid, ITICKETINFO info, IFILES files, IHttpClientFactory clientFactory)
         {
             Ticketguid = guid;
             Ticketinfo = info;
             Files = files;
-            client = httpClient;
+            _clientFactory = clientFactory;
         }
-
 
         [HttpPost]
         [Route("Create")]
-        public async Task Create()
+        public async Task Create([FromBody] CreateRequest _js_file)
         {
-            //using HttpClient client = new HttpClient()
-            //{
-            //    BaseAddress = new Uri("https://localhost:7194")
-            //}
-            //;
-            //using HttpClient client = new HttpClient();
-            var _js_file = await client.GetFromJsonAsync<js_parsed>("https://localhost:7194/Create", default);
-            Console.WriteLine("Done");
-            var files = new js_file();
-            files.name = _js_file.js_name;
-            files.code = _js_file.js_code;
+            var info = new js_parsed(_js_file.type, _js_file.name,_js_file.description);
+            var files = new js_file(_js_file.js_name, _js_file.js_code);
 
             Console.WriteLine("Done");
             var id_file = await Files.Push_File(files);
             Console.WriteLine("Done");
-            var id_ticket = await Ticketinfo.Generate_Ticket(_js_file, id_file);
+            var id_ticket = await Ticketinfo.Generate_Ticket(info, id_file);
             Console.WriteLine("Done");
             var Token = await Ticketguid.Generate_Token(id_ticket);
+
+
+
 
         }
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AnonymRequest.Storage.Migrations
 {
-    public partial class Fix : Migration
+    public partial class Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -104,12 +104,20 @@ namespace AnonymRequest.Storage.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     files = table.Column<int>(type: "int", nullable: false),
+                    comment = table.Column<int>(type: "int", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TicketInfos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TicketInfos_Comments_comment",
+                        column: x => x.comment,
+                        principalTable: "Comments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TicketInfos_Files_files",
                         column: x => x.files,
@@ -285,6 +293,11 @@ namespace AnonymRequest.Storage.Migrations
                 column: "id_ticket");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TicketInfos_comment",
+                table: "TicketInfos",
+                column: "comment");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TicketInfos_files",
                 table: "TicketInfos",
                 column: "files");
@@ -334,13 +347,13 @@ namespace AnonymRequest.Storage.Migrations
                 name: "Tickets");
 
             migrationBuilder.DropTable(
-                name: "Comments");
-
-            migrationBuilder.DropTable(
                 name: "Mods");
 
             migrationBuilder.DropTable(
                 name: "TicketInfos");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Files");

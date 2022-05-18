@@ -4,6 +4,7 @@ using AnonymRequest.Storage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnonymRequest.Storage.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220518180137_good_life")]
+    partial class good_life
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,7 +191,7 @@ namespace AnonymRequest.Storage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("files_id")
+                    b.Property<int>("files")
                         .HasColumnType("int");
 
                     b.Property<string>("name")
@@ -204,7 +206,7 @@ namespace AnonymRequest.Storage.Migrations
 
                     b.HasIndex("comment_id");
 
-                    b.HasIndex("files_id");
+                    b.HasIndex("files");
 
                     b.ToTable("TicketInfos");
                 });
@@ -372,7 +374,7 @@ namespace AnonymRequest.Storage.Migrations
 
                     b.HasOne("AnonymRequest.Storage.Entities.Files", "Files")
                         .WithMany()
-                        .HasForeignKey("files_id")
+                        .HasForeignKey("files")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
