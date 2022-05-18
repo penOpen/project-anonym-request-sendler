@@ -20,15 +20,27 @@ namespace AnonymRequest.Logic.TICKETINFO
            return post_created;
         }
 
+        //Forms ticket and return it id in Ticketinfo databse
         public async Task<int> Generate_Ticket(js_parsed info, int id_file)
         {
-            var new_ticket = new TicketInfo{name = info.name, description = info.description, files = id_file};
+            var new_ticket = new TicketInfo{name = info.name, description = info.description, files = id_file , status = "0"};
             _context.Add(new_ticket);
             var id_ticket = new_ticket.Id;
             await _context.SaveChangesAsync();
 
             return id_ticket;
         }
+
+
+        //find ticket and return class with full info of it from database into class js_convert
+        public async Task<js_convert> Get_TicketInfo(int id_ticket)
+        {
+            var info = new js_convert();
+            info = await _context.FindAsync<js_convert>(id_ticket);
+
+            return info;
+        }
+
 
     }
 

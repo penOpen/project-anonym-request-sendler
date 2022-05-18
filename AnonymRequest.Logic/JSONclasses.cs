@@ -31,4 +31,21 @@ namespace AnonymRequest.Logic
         //    code = c;
         //}
     }
+
+    public class js_find
+    {
+        public Guid master_token;
+    }
+
+    public class js_convert {
+
+        public int Id;
+        public int comment;//comment id in Comments
+        public int files; // files name and code path in Files
+        public string name;
+        public string description;
+
+        public string status;
+        
+    }
 }

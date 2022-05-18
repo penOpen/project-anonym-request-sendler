@@ -20,5 +20,14 @@ namespace AnonymRequest.Logic.FILES
             return id;
         }
         
+        //finds file linked to ticket and return class js_file
+        public async Task<js_file> Get_File(int id_file)
+        {
+            var file_info = new js_file();
+            file_info = await _context.FindAsync<js_file>(id_file);
+            
+            return file_info;
+        }
+        
     }
 }
