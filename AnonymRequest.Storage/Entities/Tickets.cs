@@ -5,9 +5,9 @@ namespace AnonymRequest.Storage.Entities
         [Key]
         public int Id { get; set; } // id ������
         public int id_mod { get; set; } // id ������
-        int id_ticketinfo { get; set; }// id ticketinfo
-        int id_comments { get; set; }// id ��������
-        int status { get; set; } // 1 �� 4 ��������� ��������
+        public int id_ticketinfo { get; set; }// id ticketinfo
+        public int id_comments { get; set; }// id ��������
+        public int status { get; set; } // 1 �� 4 ��������� ��������
 
         [ForeignKey(nameof(id_mod))]
         public virtual Mod Mod { get; set; }

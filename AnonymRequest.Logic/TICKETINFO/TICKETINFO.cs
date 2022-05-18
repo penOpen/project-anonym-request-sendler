@@ -22,7 +22,7 @@ namespace AnonymRequest.Logic.TICKETINFO
 
         public async Task<int> Generate_Ticket(js_parsed info, int id_file)
         {
-            var new_ticket = new TicketInfo{name = info.name, description = info.desc, files = id_file};
+            var new_ticket = new TicketInfo{name = info.name, description = info.description, files = id_file};
             _context.Add(new_ticket);
             var id_ticket = new_ticket.Id;
             await _context.SaveChangesAsync();

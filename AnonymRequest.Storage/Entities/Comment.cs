@@ -4,11 +4,11 @@ namespace AnonymRequest.Storage.Entities
     {
         [Key]
         public int Id { get; set; } // ���������� ����
-        bool is_mod { get; set; } // �����/������������
+        public bool is_mod { get; set; } // �����/������������
 
-        string text { get; set; } // ����� ��������
+        public string text { get; set; } // ����� ��������
 
-        long time { get; set; } // ����� ��������� �������� 
+        public long time { get; set; } // ����� ��������� �������� 
         
 
 

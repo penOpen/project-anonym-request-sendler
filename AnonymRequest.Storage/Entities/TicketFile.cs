@@ -6,8 +6,8 @@ public class TicketFiles
     public int Id { get; set; } // id 
 
 
-    int File_id { get; set; } // id файла
-    int ticket_id { get; set; } // id жалобы
+    public int File_id { get; set; } // id файла
+    public int ticket_id { get; set; } // id жалобы
 
     [ForeignKey(nameof(File_id))]
     public virtual Files Files { get; set; }
