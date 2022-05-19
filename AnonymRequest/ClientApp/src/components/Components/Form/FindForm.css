@@ -1,0 +1,11 @@
+.find__form {
+  background-color: orange;
+  width: 60%;
+  border-radius: 16px;
+  height: 30vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 2.1rem;
+  padding: 10px;
+}

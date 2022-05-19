@@ -1,0 +1,203 @@
+.create__form {
+  background-color: orange;
+  width: 90%;
+  border-radius: 16px;
+  position:absolute;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 30px;
+}
+
+.create__input {
+  margin-bottom: 20px;
+  width: 100%;
+  min-height: 8%;
+  border: 0px;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 1.5rem;
+}
+
+.create__description {
+  height: 50%;
+  align-items: flex-start;
+  resize: none;
+}
+
+.create__input-last {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.create__input-last {
+  font-size: 1.5rem;
+}
+
+.wrap_create__files {
+  position: relative;
+  width: 20%;
+}
+
+.wrap_create__select {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 2em;
+  padding-left: 10px;
+  font-size: 1.5rem;
+  max-height: 10%;
+  justify-content: space-between;
+}
+.create__select-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 270px;
+  white-space: pre;
+}
+.create__select {
+  padding: 10px;
+  height: 100%;
+  margin-left: 10px;
+  background-color: white;
+  border: 2px solid;
+  border-radius: 2em;
+  font-size: inherit;
+  width: 40%;
+}
+
+.create__files {
+  display: block;
+  height: 100%;
+}
+
+.create__files p {
+  background-color: white;
+  text-align: center;
+  border: 3px solid rgb(150, 14, 177);
+  border-radius: 16px;
+  top: 50%;
+  width: 125%;
+  height: 100%;
+  line-height: 2.5em;
+  transition: all linear 0.5s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+.create__files p:hover {
+  background-color: rgb(150, 14, 177);
+  border: 3px solid white;
+  color: white
+}
+
+#send_files {
+  display: none;
+}
+
+.create__submit {
+  font-size: inherit;
+  margin-left: auto;
+  padding: 10px;
+  height: 100%;
+  width: 20%;
+  border: 0px;
+  background-color: white;
+  border-radius: 8px;
+  transition: all 0.5s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+.create__submit:hover {
+  background-color: rgb(150, 14, 177);
+  color: white;
+}
+
+.create__images {
+  display: flex;
+  flex-direction: row;
+}
+
+.create__modal {
+  background-color: lightgray;
+  border-radius: 16px;
+  padding: 1%;
+  border: 2px solid;
+  max-width: 95%;
+  max-height: 95vh;
+}
+
+.wrap_create__modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 99;
+  display: flex;
+  top:0;
+  left:0;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Контейнер подсказок */
+.tooltip {
+  position: relative;
+}
+
+/* Текст подсказки */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: left;
+  padding: 5px 5px;
+  border-radius: 6px;
+  min-height: 3em;
+  max-width: 200%;
+  overflow-wrap: break-word;
+
+  /* Расположите текст подсказки */
+  position: absolute;
+  z-index: 1;
+  top: 110%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Исчезают в подсказке */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Подсказка стрелка */
+.tooltip .tooltiptext::before {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 45px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color:  transparent transparent #555 transparent;
+}
+
+/* Отображение текста подсказки при наведении курсора мыши на контейнер подсказки */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media screen and (max-width: 755px) {
+  .wrap_create__image {
+    width: 96px;
+    margin-right: 5px;
+  }
+  .create__image-text {
+    max-width: 96px;
+  }
+}

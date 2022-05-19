@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AnonymRequest.Logic": {
+      "commandName": "Project"
+    },
+    "newProfile1": {
+      "commandName": "Project"
+    }
+  }
+}
