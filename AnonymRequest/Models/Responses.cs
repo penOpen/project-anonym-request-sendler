@@ -66,6 +66,23 @@ namespace AnonymRequest.Models
         }
     }
 
+    public class LoginResponse 
+    {
+        public string? token;
+        public bool? status;
+
+        public LoginResponse(string _token, bool _status)
+        {
+            token = _token;
+            status = _status;
+        }
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize<LoginResponse>(this);
+        }
+
+    }
+
     public class Moder
     {
         public Logic.File avatar { get; set; }
@@ -94,4 +111,5 @@ namespace AnonymRequest.Models
             files = Files;
         }
     }
+
 }

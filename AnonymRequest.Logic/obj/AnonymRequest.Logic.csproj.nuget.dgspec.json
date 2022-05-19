@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Logic\\AnonymRequest.Logic.csproj": {}
+    "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Logic\\AnonymRequest.Logic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Logic\\AnonymRequest.Logic.csproj": {
+    "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Logic\\AnonymRequest.Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Logic\\AnonymRequest.Logic.csproj",
+        "projectUniqueName": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Logic\\AnonymRequest.Logic.csproj",
         "projectName": "AnonymRequest.Logic",
-        "projectPath": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Logic\\AnonymRequest.Logic.csproj",
-        "packagesPath": "C:\\Users\\snetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Logic\\obj\\",
+        "projectPath": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Logic\\AnonymRequest.Logic.csproj",
+        "packagesPath": "C:\\Users\\асер\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Logic\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\snetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\асер\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj": {
-                "projectPath": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj"
+              "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj": {
+                "projectPath": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj"
               }
             }
           }
@@ -62,25 +58,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj": {
+    "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
+        "projectUniqueName": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
         "projectName": "AnonymRequest.Storage",
-        "projectPath": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
-        "packagesPath": "C:\\Users\\snetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\snetk\\source\\repos\\project-anonym-request-sendler\\AnonymRequest\\AnonymRequest.Storage\\obj\\",
+        "projectPath": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\AnonymRequest.Storage.csproj",
+        "packagesPath": "C:\\Users\\асер\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\асер\\Documents\\GitHub\\project-anonym-request-sendler\\AnonymRequest.Storage\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\snetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\асер\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -140,7 +132,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,12 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using AnonymRequest.Logic.MOD;
+using AnonymRequest.Models;
 
 namespace AnonymRequest.Controllers
 {
     public class LoginController : Controller
     {
-        public IActionResult Index()
+       IMOD Mod;
+
+        public LoginController(IMOD mod)
         {
-            return View();
+            Mod = mod;
         }
+
+
+        [HttpPost]
+        [Route("api/login")]
+        public async Task<string> Create([FromBody] LoginRequest login)
+        {
+            var log_back = Mod.Find_Moderator(login.Token);
+            if (log_back != null)
+            {
+                return new LoginResponse(login.Token, true).ToString();
+            }
+            else
+            {
+                var response = new LoginResponse(login.Token, false);
+                return new LoginResponse(login.Token, true).ToString();
+            }
+        }
+
+
     }
 }
