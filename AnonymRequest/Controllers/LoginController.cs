@@ -18,15 +18,14 @@ namespace AnonymRequest.Controllers
         [Route("api/login")]
         public async Task<string> Create([FromBody] LoginRequest login)
         {
-            var log_back = Mod.Find_Moderator(login.Token);
+            var log_back = await Mod.Find_Moderator(login.Token);
             if (log_back != null)
             {
                 return new LoginResponse(login.Token, true).ToString();
             }
             else
             {
-                var response = new LoginResponse(login.Token, false);
-                return new LoginResponse(login.Token, true).ToString();
+                return new LoginResponse(login.Token, false).ToString();
             }
         }
 

@@ -5,10 +5,10 @@ namespace AnonymRequest.Storage.Entities
         [Key]
         public int Id { get; set; }
 
-        public string token; 
+        public string token { get; set; }
         public int avatar { get; set; } 
         
-        public int id_type;
+        public int id_type { get; set; }
 
         [ForeignKey(nameof(avatar))]
         public virtual Files Avatar { get; set; }

@@ -68,8 +68,8 @@ namespace AnonymRequest.Models
 
     public class LoginResponse 
     {
-        public string? token;
-        public bool? status;
+        public string? token { get; set; }
+        public bool? status { get; set; }
 
         public LoginResponse(string _token, bool _status)
         {

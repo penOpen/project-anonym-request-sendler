@@ -1,6 +1,6 @@
 namespace AnonymRequest.Logic.MOD
 {
-    public class MOD
+    public class MOD:IMOD
     {
         private readonly Context _context;
 
@@ -9,9 +9,9 @@ namespace AnonymRequest.Logic.MOD
             _context = context;
         }
 
-        public async Task<Mod> Find_Moderator(string key)
+        public async Task<Mod?> Find_Moderator(string key)
         {
-            var found_mod =  await _context.Mods.OrderBy(p => p.token == key).FirstOrDefaultAsync();
+            var found_mod =  await _context.Mods.OrderBy(p=>p.token == key).FirstOrDefaultAsync();
             return found_mod;
 
         }
