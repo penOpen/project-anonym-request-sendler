@@ -1,0 +1,24 @@
+.wrap_create__image {
+  background-color: rgb(74, 216, 74);
+  border: 2px solid blueviolet;
+  border-radius: .5em;
+  width: 108px;
+  height: 100%;
+  margin-top: 15px;
+  flex-direction: column;
+  margin-right: 20px;
+  padding: 5px;
+}
+
+.create__image {
+  width: 32px;
+  height: 32px;
+}
+.create__image-text {
+  overflow: hidden;
+  padding: 0px 7px;
+  width: 108px;
+  text-overflow: ellipsis;
+  white-space: pre;
+  text-align: center;
+}

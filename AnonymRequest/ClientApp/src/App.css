@@ -1,0 +1,24 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 60px - 80px);
+  background-color: white;
+}
+
+.center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column-items {
+  display: flex;
+  flex-direction: column;
+}

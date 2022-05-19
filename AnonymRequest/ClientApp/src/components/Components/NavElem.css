@@ -1,0 +1,9 @@
+.nav-elem {
+  margin: 20px;
+  font-size: 1.75rem;
+  color: white;
+} 
+
+.nav-elem > a {
+  color: white;
+}

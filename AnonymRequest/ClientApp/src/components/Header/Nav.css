@@ -1,0 +1,19 @@
+nav {
+  position: relative;
+  top: 0px;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: darkmagenta;
+}
+
+.wrap__left-nav {
+  position: absolute;
+  left: 0px;
+}
+
+.wrap__right-nav {
+  position: absolute;
+  right: 0px;
+}

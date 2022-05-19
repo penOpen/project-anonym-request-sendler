@@ -1,0 +1,16 @@
+.find__error-text {
+  position: absolute;
+  bottom: calc(15vh);
+  font-size: 2rem;
+  text-align: center;
+  animation: unopacity 5s linear;
+}
+
+@keyframes unopacity {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}

@@ -1,0 +1,17 @@
+.find__submit {
+  background-color: white;
+  border: 0px solid;
+  border-radius: 16px;
+  height: 40%;
+  width: 20%;
+  justify-self: flex-end;
+  margin-left: auto;
+  font-size: inherit;
+  transition: all 500ms;
+  margin-right: 5vh;
+} 
+
+.find__submit:hover {
+  background-color: rgb(150, 14, 177);
+  color: white;
+}

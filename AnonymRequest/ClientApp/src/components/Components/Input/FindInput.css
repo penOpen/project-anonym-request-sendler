@@ -1,0 +1,10 @@
+.find__input {
+  background-color: white;
+  border: 0px solid;
+  border-radius: 16px;
+  height: 30%;
+  width: 63%;
+  font-size: inherit;
+  margin-left: 5vh;
+  padding-left: 5px;
+}
