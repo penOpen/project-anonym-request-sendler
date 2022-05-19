@@ -15,10 +15,10 @@ namespace AnonymRequest.Logic.FILES
             
             var new_file = new Files {Name = file.name, url = file.code};
             _context.Add(new_file);
-            var id = new_file.Id;
             await _context.SaveChangesAsync();
-            int file_id = _context.Files.OrderByDescending(p => p.Id).LastOrDefault().Id;
-            return file_id;
+            var id = new_file.Id;
+            //int file_id = _context.Files.OrderByDescending(p => p.Id).LastOrDefault().Id;
+            return id;
           
         }
         

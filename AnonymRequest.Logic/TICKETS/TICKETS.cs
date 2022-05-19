@@ -13,13 +13,21 @@ namespace AnonymRequest.Logic.TICKETS
 
         public async Task<int> Create_Tickets(int ticket_info_id)
         {   
-            var token = new Guid();
-            var new_tickets = new Tickets{id_ticketinfo = ticket_info_id};
+            Guid token =  Guid.NewGuid();
+            var new_tickets = new Tickets{id_ticketinfo = ticket_info_id, token = token};
             _context.Add(new_tickets);
             await _context.SaveChangesAsync();
-            int id_of_ticket = _context.Types.OrderByDescending(p => p.Id).LastOrDefault().Id;
+            
+            var id_of_ticket = new_tickets.Id;
+
             return id_of_ticket;
 
+        }
+
+        public async Task<string>GetGuidById(int id)
+        {
+            var ticket = await _context.Tickets.FirstOrDefaultAsync(p => p.Id == id);
+            return ticket.token.ToString();
         }
     }
 }

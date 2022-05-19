@@ -43,30 +43,34 @@ namespace AnonymRequest.Controllers
         [Route("Create")]
         public async Task<string> Create([FromBody] CreateRequest _js_file)
         {
-            int len = _js_file.files.Length;
+            int len = _js_file.Files.Length;
             js_file file = new js_file();
             List<int> id_of_files = new List<int>();
 
             for (int i = 0; i < len; i++)
             {
-                var temp_file = _js_file.files[i];
-                file.name = temp_file.name;
-                file.code = temp_file.code;
+                var temp_file = _js_file.Files[i];
+                file.name = temp_file.Name;
+                file.code = temp_file.Code;
                 var id_file = await Files.Push_File(file);
+                Console.WriteLine(id_file);
+                Console.WriteLine(id_of_files);
                 id_of_files.Add(id_file);
             }
-            var info = new js_parsed(_js_file.type, _js_file.name, _js_file.description);
+            var info = new js_parsed(_js_file.Type, _js_file.Name, _js_file.Description);
             var id_ticketinfo = await Ticketinfo.Generate_Ticket(info);
 
             foreach (var id_file in id_of_files)
             {
-                Ticketfiles.Bind_Ticket_File(id_file, id_ticketinfo);
+                await Ticketfiles.Bind_Ticket_File(id_file, id_ticketinfo);
             }
 
             var id_tickets = await Tickets.Create_Tickets(id_ticketinfo);
             var push_token = await Tickettoken.Create_Ticket_Token(id_tickets);
-
-            return push_token;
+            var guid = await Tickets.GetGuidById(id_tickets);
+            var response = new CreateResponse(push_token, guid);
+            string res = JsonSerializer.Serialize<CreateResponse>(response);
+            return res;
         }
 
 

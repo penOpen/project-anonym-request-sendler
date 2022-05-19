@@ -26,7 +26,7 @@ namespace AnonymRequest.Logic.TICKETINFO
             var new_ticket = new TicketInfo{name = info.name, description = info.description,  status = "0",};
             _context.Add(new_ticket);
             await _context.SaveChangesAsync();
-            int id_ticket = _context.TicketInfos.OrderByDescending(p => p.Id).LastOrDefault().Id;
+            var id_ticket = new_ticket.Id;
             
             return id_ticket;
         }

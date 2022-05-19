@@ -4,30 +4,41 @@ namespace AnonymRequest.Models
 {
     public class CreateRequest
     {
-        public string? type { get; set; }
-        public string? name { get; set; }
-        public string? description { get; set; }
+        public string? Type { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
 
-        public File?[] files;
+        public File?[] Files { get; set; }
 
-        public CreateRequest(string _type, string _name, string _desc, File?[] array)
+        public CreateRequest(string type, string name, string description, File?[] files)
         {
-            type = _type;
-            name = _name;
-            description = _desc;
-            files = array; //tut!
+            Type = type;
+            Name = name;
+            Description = description;
+            Files = files; //tut!
         }
         
     }
     public class File
     {
-        public string? name {get; set;}
-        public string? code {get; set;}
+        public string? Name {get; set;}
+        public string? Code {get; set;}
 
-        public File(string _name, string _code)
+        public File(string name, string code)
         {
-            name = _name;
-            code = _code;
+            Name = name;
+            Code = code;
+        }
+    }
+
+    public class CreateResponse
+    {
+        public string token { get; set;}
+        public string guid { get; set;}
+        public CreateResponse(string Token, string G)
+        {
+            token = Token; 
+            guid = G;
         }
     }
 }
