@@ -2,7 +2,7 @@ namespace AnonymRequest.Logic.TICKETINFO
 {
     public interface ITICKETINFO
     {
-        public js_parsed Json_Parse(string json);
         public  Task<int> Generate_Ticket(js_parsed info);
+        public  Task<TicketInfo> Get_TicketInfo(int id_ticket);
     }
 }

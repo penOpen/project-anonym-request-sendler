@@ -14,6 +14,7 @@ using System.Text.Json.Serialization;
 using System.Net.Http.Json;
 using System.Net;
 using AnonymRequest.Models;
+using AnonymRequest.Logic.TYPES;
 
 namespace AnonymRequest.Controllers
 
@@ -26,8 +27,9 @@ namespace AnonymRequest.Controllers
         private readonly ITICKETS Tickets;
         private readonly ITICKETTOKEN Tickettoken;
         private readonly ITICKETFILES Ticketfiles;
+        private readonly ITYPES Types;
 
-        public CreateController( ITICKETINFO info, IFILES files, ICOMMENT comment, ITICKETS ticket, ITICKETTOKEN tickettoken, ITICKETFILES add_Files)
+        public CreateController( ITICKETINFO info, IFILES files, ICOMMENT comment, ITICKETS ticket, ITICKETTOKEN tickettoken, ITICKETFILES add_Files, ITYPES type)
         {
 
             Ticketinfo = info;
@@ -36,11 +38,11 @@ namespace AnonymRequest.Controllers
             Tickets = ticket;
             Tickettoken = tickettoken;
             Ticketfiles = add_Files;
-
+            Types = type;
         }
 
         [HttpPost]
-        [Route("Create")]
+        [Route("api/create")]
         public async Task<string> Create([FromBody] CreateRequest _js_file)
         {
             int len = _js_file.Files.Length;
@@ -59,18 +61,18 @@ namespace AnonymRequest.Controllers
             }
             var info = new js_parsed(_js_file.Type, _js_file.Name, _js_file.Description);
             var id_ticketinfo = await Ticketinfo.Generate_Ticket(info);
+            var type_id = await Types.GetTypeIDByValue(_js_file.Type);
 
             foreach (var id_file in id_of_files)
             {
                 await Ticketfiles.Bind_Ticket_File(id_file, id_ticketinfo);
             }
 
-            var id_tickets = await Tickets.Create_Tickets(id_ticketinfo);
+            var id_tickets = await Tickets.Create_Tickets(id_ticketinfo, type_id);
             var push_token = await Tickettoken.Create_Ticket_Token(id_tickets);
             var guid = await Tickets.GetGuidById(id_tickets);
             var response = new CreateResponse(push_token, guid);
-            string res = JsonSerializer.Serialize<CreateResponse>(response);
-            return res;
+            return response.ToString();
         }
 
 

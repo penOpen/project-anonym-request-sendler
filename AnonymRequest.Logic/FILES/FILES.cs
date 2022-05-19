@@ -33,3 +33,18 @@ namespace AnonymRequest.Logic.FILES
         
     }
 }
+
+namespace AnonymRequest.Logic
+{
+    public class File
+    {
+        public string? Name { get; set; }
+        public string? Code { get; set; }
+
+        public File(string name, string code)
+        {
+            Name = name;
+            Code = code;
+        }
+    }
+}
