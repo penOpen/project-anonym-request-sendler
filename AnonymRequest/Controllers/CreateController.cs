@@ -45,14 +45,12 @@ namespace AnonymRequest.Controllers
         public async Task<string> Create([FromBody] CreateRequest _js_file)
         {
             int len = _js_file.Files.Length;
-            js_file file = new js_file();
             List<int> id_of_files = new List<int>();
 
             for (int i = 0; i < len; i++)
             {
                 var temp_file = _js_file.Files[i];
-                file.name = temp_file.name;
-                file.code = temp_file.code;
+                Logic.File file = new Logic.File(temp_file.name, temp_file.code);
                 var id_file = await Files.Push_File(file);
                 Console.WriteLine(id_file);
                 Console.WriteLine(id_of_files);

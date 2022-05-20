@@ -7,9 +7,7 @@ namespace AnonymRequest.Models
         public string? Type { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-
         public Logic.File?[] Files { get; set; }
-
         public CreateRequest(string type, string name, string description, Logic.File?[] files)
         {
             Type = type;
@@ -42,10 +40,25 @@ namespace AnonymRequest.Models
     public class LoginRequest
     {
         public string? Token { get; set; }
-
         public LoginRequest(string token)
         {
             Token = token;
+        }
+    }
+    public class CommentRequest
+    {
+        public string IsLogged { get; set; }
+        public string? Text { get; set; }
+        public string Time { get; set; }
+        public string? Gid { get; set; }
+        public Logic.File?[] Files { get; set; }
+        public CommentRequest(string isLogged, string text, string time, string gid, Logic.File?[] files)
+        {
+            Text = text;
+            Files = files;
+            IsLogged = isLogged;
+            Gid = gid;
+            Time = time;
         }
     }
 }

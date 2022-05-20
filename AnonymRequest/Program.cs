@@ -13,6 +13,7 @@ using AnonymRequest.Logic.COMMENT;
 using AnonymRequest.Logic.TICKETFILES;
 using AnonymRequest.Logic.TYPES;
 using AnonymRequest.Logic.MOD;
+using AnonymRequest.Logic.COMMENTFILES;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -26,6 +27,7 @@ services.AddScoped<ITICKETTOKEN, TICKETTOKEN>();
 services.AddScoped<ITICKETFILES, TICKETFILES>();
 services.AddScoped<IMOD, MOD>();
 services.AddScoped<ITYPES, TYPE>();
+services.AddScoped<ICOMMENTFILES, COMMENTFILES>();
 
 //Add Database Context
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
@@ -38,14 +40,13 @@ services.AddCors(options =>
             {
                 policy.WithOrigins("https://localhost:44401");
                 policy.WithHeaders("Content-Type");
+                policy.WithMethods(new string[]{ "GET", "POST", "PUT"});
             }
             );
     }
 );
 
 var app = builder.Build();
-
-
 
 // Add services to the container.
 

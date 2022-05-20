@@ -89,6 +89,7 @@ function viewState() {
     status: 0,
     type: "0",
     files: [],
+    isMod: false,
     moderator: {
       name: "noid",
       avatar: "png-transparent-user-computer-icons-user-miscellaneous-cdr-rectangle.png"
@@ -140,6 +141,15 @@ function viewState() {
             text: action.payload,
             files: state.newComment.files
           }
+        }
+      case "commentsUpdate":
+        return {
+          ...state,
+          newComment: {
+            text: "",
+            files: []
+          },
+          comments: action.payload
         }
       case "modalclicked":
         document.body.style.overflow = "hidden"

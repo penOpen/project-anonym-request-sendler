@@ -44,7 +44,7 @@ namespace AnonymRequest.Logic.TICKETTOKEN
         {
             var ticket = await _context.Tickets.FirstOrDefaultAsync(p => p.token.ToString() == guid);
             if (ticket == null) return "-1";
-            var token = await _context.TicketTokens.OrderBy(p => p.ticket_id == ticket.Id).LastOrDefaultAsync();
+            var token = await _context.TicketTokens.Where(p => p.ticket_id == ticket.Id).FirstOrDefaultAsync();
             if (token == null) return "-1";
             return token.key_token;
         }

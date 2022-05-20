@@ -12,6 +12,11 @@
   padding: 10px;
   display: flex;
 }
+.view__guid {
+  font-size: 1.75rem;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
 .view__ticket_info {
   background-color: rgb(243, 187, 84);
   border-radius: 8px;

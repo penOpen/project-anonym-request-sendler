@@ -10,7 +10,7 @@ namespace AnonymRequest.Logic.FILES
         }
 
         //push file in database, return ->  Id
-        public async Task<int> Push_File(js_file file )
+        public async Task<int> Push_File(Logic.File file )
         {
             
             var new_file = new Files {Name = file.name, url = file.code};

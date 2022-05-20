@@ -95,6 +95,18 @@ namespace AnonymRequest.Models
         }
 
     }
+    public class CommentResponse
+    {
+        public Logic.Comments?[] comment { get; set; }
+        public CommentResponse(Logic.Comments?[] comments)
+        {
+            comment = comments;
+        }
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+    }
 
     public class Comment
     {
@@ -102,7 +114,6 @@ namespace AnonymRequest.Models
         public bool isMod { get; set; }
         public string text { set; get; }
         public Logic.File?[] files { get; set; }
-
         public Comment(int Id, bool IsMod, string Text, Logic.File?[] Files)
         {
             id = Id;

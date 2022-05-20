@@ -8,6 +8,10 @@ using AnonymRequest.Logic.TICKETTOKEN;
 using AnonymRequest.Logic.TICKETFILES;
 using AnonymRequest.Storage;
 using AnonymRequest.Models;
+using AnonymRequest.Logic.COMMENTFILES;
+using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Json;
+using System.Net;
 
 namespace AnonymRequest.Controllers 
 {
@@ -19,7 +23,8 @@ namespace AnonymRequest.Controllers
         private readonly ITICKETS Tickets;
         private readonly ITICKETTOKEN Tickettoken;
         private readonly ITICKETFILES Ticketfiles;
-        public ViewController(ITICKETINFO info, IFILES files, ICOMMENT comment, ITICKETS ticket, ITICKETTOKEN tickettoken, ITICKETFILES add_Files)
+        private readonly ICOMMENTFILES CommentFiles;
+        public ViewController(ITICKETINFO info, IFILES files, ICOMMENT comment, ITICKETS ticket, ITICKETTOKEN tickettoken, ITICKETFILES add_Files, ICOMMENTFILES commentfiles)
         {
 
             Ticketinfo = info;
@@ -28,6 +33,8 @@ namespace AnonymRequest.Controllers
             Tickets = ticket;
             Tickettoken = tickettoken;
             Ticketfiles = add_Files;
+            CommentFiles = commentfiles;
+
         }
 
 
@@ -46,6 +53,29 @@ namespace AnonymRequest.Controllers
             var ticketInfo = await Ticketinfo.Get_TicketInfo(ticket.id_ticketinfo);
 
             return new ViewResponse(true, ticketInfo.name, ticketInfo.description, ticketfiles, ticketInfo.status, null, null).ToString();
+        }
+
+        [HttpPut]
+        [Route("api/view")]
+        public async Task<string> Create_Comment([FromBody] CommentRequest comment)
+        {
+            var ticket_id = await Tickets.GetTicketByGuid(comment.Gid);
+            bool is_logged = comment.IsLogged == "true" ? true : false;
+            long time = System.Convert.ToInt64(comment.Time);
+            var comment_id = await Comments.Create_Comment(is_logged, comment.Text, time, ticket_id);
+            int files_number = comment.Files.Length;
+
+
+            for (int i = 0; i < files_number; i++)
+            {
+                Logic.File file = new Logic.File(comment.Files[i].name, comment.Files[i].code);
+                var id_file = await Files.Push_File(file);
+                await CommentFiles.CreateCommentFiles(comment_id, id_file);
+            }
+
+            var comments = await Comments.GetCommentsByTicketId(ticket_id, comment.Files);
+
+            return new CommentResponse(comments).ToString();
         }
     }
 }

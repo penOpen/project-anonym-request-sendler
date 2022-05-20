@@ -6,7 +6,6 @@ function ViewFormLast(props) {
   const {state, dispatch} = props
 
   return (
-    
     <div
       className='view__form_last'
     >
