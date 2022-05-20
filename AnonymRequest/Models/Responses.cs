@@ -126,4 +126,18 @@ namespace AnonymRequest.Models
         }
 
     }
+    public class UpdateResponse
+    {
+        public string? status;
+
+        public UpdateResponse(string s)
+        {
+            status = s;
+        }
+
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+    }
 }

@@ -42,5 +42,13 @@ namespace AnonymRequest.Logic.TICKETS
             var ticket = await _context.Tickets.OrderBy(p=>p.id_ticketinfo == ticket_id).FirstOrDefaultAsync();
             return ticket;
         }
+
+        public async Task<int> GetTicketInfoIDbyGUID(string guid)
+        {
+            var ticket = await _context.Tickets.FirstOrDefaultAsync(p => p.token.ToString() == guid);
+            if (ticket == null) return -1;
+            return ticket.id_ticketinfo;
+        }
+
     }
 }
