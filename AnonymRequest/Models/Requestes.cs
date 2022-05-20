@@ -51,18 +51,18 @@ namespace AnonymRequest.Models
 
     public class CommentRequest
     {
+        public string IsLogged { get; set; }
         public string? Text { get; set; }
+        public string Time { get; set; }
+        public string? Gid { get; set; }
         public Logic.File?[] Files { get; set; }
-        public bool IsLogged { get; set; }
-        public string Gid { get; set; }
-        public long Time { get; set;}
 
-        public CommentRequest(string? text, Logic.File?[] files, bool isLogged, string guid, long time)
+        public CommentRequest(string isLogged, string text, string time, string gid, Logic.File?[] files)
         {
             Text = text;
             Files = files;
             IsLogged = isLogged;
-            Gid = guid;
+            Gid = gid;
             Time = time;
         }
     }

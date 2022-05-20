@@ -5,8 +5,9 @@ using AnonymRequest.Logic.TICKETS;
 using AnonymRequest.Logic.COMMENT;
 using AnonymRequest.Logic.COMMENTFILES;
 using AnonymRequest.Logic;
-
-
+using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Json;
+using System.Net;
 
 namespace AnonymRequest.Controllers
 {
@@ -26,19 +27,27 @@ namespace AnonymRequest.Controllers
             CommentFiles = commentfiles;
         }
 
-        [HttpPut]
-        [Route("api/View")]
-        public async Task Create_Comment([FromBody] CommentRequest comment)
+        [HttpPost]
+        [Route("api/view")]
+        public async Task<string> Create_Comment([FromBody] CommentRequest comment)
         {
             var ticket_id = await Tickets.GetTicketByGuid(comment.Gid);
-            var comment_id = await Comment.Create_Comment(comment.IsLogged,comment.Text, comment.Time, ticket_id);
+            bool is_logged = comment.IsLogged == "true" ? true : false;
+            long time = System.Convert.ToInt64(comment.Time);
+            var comment_id = await Comment.Create_Comment(is_logged,comment.Text, time, ticket_id);
             int files_number = comment.Files.Length;
+            
+
             for (int i = 0; i < files_number; i++)
             {
                 js_file file = new js_file(comment.Files[i].Name, comment.Files[i].Code);
                 var id_file = await Files.Push_File(file);
                 await CommentFiles.CreateCommentFiles(comment_id, id_file);
             }
+
+            var comments = await Comment.GetCommentsByTicketId(ticket_id, comment.Files);
+
+            return new CommentResponse(comments).ToString();
         }
     }
 }

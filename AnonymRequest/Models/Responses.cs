@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using AnonymRequest.Logic;
 
 namespace AnonymRequest.Models
 {
@@ -98,15 +99,14 @@ namespace AnonymRequest.Models
 
     public class CommentResponse
     {
-        int time { get; set; }
-        string type { get; set; }
-        int id { set; get; }
-
-        public CommentResponse(int Time, string Type, int Id)
+        public Comments?[] comment { get; set; }
+        public CommentResponse(Comments?[] comments)
         {
-            time = Time;
-            type = Type;
-            id = Id;
+            comment = comments;
+        }
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 
@@ -124,7 +124,6 @@ namespace AnonymRequest.Models
             text = Text;
             files = Files;
         }
+
     }
-
-
 }
