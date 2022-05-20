@@ -2,7 +2,7 @@
 namespace AnonymRequest.Logic.COMMENT
 
 {
-    public class COMMENT:ICOMMENT
+    public class COMMENT : ICOMMENT
     {
         private readonly Context _context;
 
@@ -11,15 +11,13 @@ namespace AnonymRequest.Logic.COMMENT
             _context = context;
         }
 
-        public async Task<int> Create_Comment()
+        public async Task<int> Create_Comment(bool _is_mod, string _text, long _time, int _ticket_id)
         {
-            var new_Comment = new Comment{is_mod = false, text = "-1", time = -1};
+            var new_Comment = new Comment{is_mod = _is_mod, text = _text, time = _time, ticket_id = _ticket_id};
              _context.Add(new_Comment);
-            var id_comment = new_Comment.Id;
-            Console.WriteLine(id_comment);
             await _context.SaveChangesAsync();
-            int new_comment = _context.Comments.OrderByDescending(p => p.Id).LastOrDefault().Id;
-            return new_comment;
+            var id_comment = new_Comment.Id;
+            return id_comment;
         }
     }
 }

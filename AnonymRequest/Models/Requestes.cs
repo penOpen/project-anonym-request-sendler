@@ -54,14 +54,16 @@ namespace AnonymRequest.Models
         public string? Text { get; set; }
         public Logic.File?[] Files { get; set; }
         public bool IsLogged { get; set; }
-        public int Ticket_id { get; set; }
+        public string Gid { get; set; }
+        public long Time { get; set;}
 
-        public CommentRequest(string? text, Logic.File?[] files, bool isLogged, int ticket_id)
+        public CommentRequest(string? text, Logic.File?[] files, bool isLogged, string guid, long time)
         {
             Text = text;
             Files = files;
             IsLogged = isLogged;
-            Ticket_id = ticket_id;
+            Gid = guid;
+            Time = time;
         }
     }
 }

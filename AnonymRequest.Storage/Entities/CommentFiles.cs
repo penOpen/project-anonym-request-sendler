@@ -4,8 +4,8 @@ namespace AnonymRequest.Storage.Entities
     {
         [Key]
         public int Id { get; set; }
-        public int comment_id { get; set; } // id ��������
-        public int file_id { get; set; } // id �����
+        public int comment_id { get; set; } // id of comment
+        public int file_id { get; set; } // id of file
 
         [ForeignKey(nameof(comment_id))]
         public virtual Comment Comment { get; set; }

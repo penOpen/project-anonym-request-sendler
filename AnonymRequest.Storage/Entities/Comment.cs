@@ -4,7 +4,7 @@ namespace AnonymRequest.Storage.Entities
     {
         [Key]
         public int Id { get; set; } // id in database
-        public bool is_mod { get; set; } // bool moderator
+        public bool is_mod { get; set; } // bool moderator or not
 
         public string text { get; set; } // comment
 
@@ -17,5 +17,4 @@ namespace AnonymRequest.Storage.Entities
 
 
     }
-    //
 }

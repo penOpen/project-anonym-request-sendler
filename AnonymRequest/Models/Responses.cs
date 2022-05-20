@@ -124,7 +124,7 @@ namespace AnonymRequest.Models
             text = Text;
             files = Files;
         }
-    
+    }
 
 
 }
