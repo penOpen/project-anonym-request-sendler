@@ -80,4 +80,14 @@ namespace AnonymRequest.Models
             Status = status;
         }
     }
+
+    public class ViewTicketsRequest
+    {
+        public string? Token {get; set;}
+
+        public ViewTicketsRequest(string token)
+        {
+            Token = token;
+        }
+    }
 }

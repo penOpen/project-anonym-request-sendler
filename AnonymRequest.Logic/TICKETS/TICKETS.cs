@@ -54,5 +54,19 @@ namespace AnonymRequest.Logic.TICKETS
             return ticket.id_ticketinfo;
         }
 
+        public async Task<List<int>> GetTicketInfoIdbyType(int type)
+        {
+            var ticket = await _context.Tickets
+                .Where(p => p.typeid == type)
+                .ToArrayAsync();
+            List<int> id_ticketinfo = new List<int>();
+            foreach (var elem in ticket)
+            {
+                id_ticketinfo.Add(elem.id_ticketinfo);
+            }
+
+            return id_ticketinfo;
+        }
+
     }
 }

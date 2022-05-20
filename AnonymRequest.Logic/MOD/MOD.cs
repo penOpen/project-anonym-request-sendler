@@ -16,5 +16,11 @@ namespace AnonymRequest.Logic.MOD
 
         }
 
+        public async Task<int> Get_Type_Of_Moderator(string key)
+        {
+            var found_mod = await _context.Mods.Where(p => p.token == key).FirstOrDefaultAsync();
+            return found_mod.id_type;
+        }
+
     }
 }

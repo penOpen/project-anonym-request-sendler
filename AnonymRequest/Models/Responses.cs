@@ -140,4 +140,27 @@ namespace AnonymRequest.Models
             return JsonSerializer.Serialize(this);
         }
     }
+
+    public class ViewTicketsResponse
+    {
+        public string? name {get; set;}
+        public string? description {get; set;}
+        public string? status {get; set;}
+
+        public ViewTicketsResponse()
+        {
+
+        }
+
+        public ViewTicketsResponse(string n, string d, string s)
+        {
+            name = n;
+            description = d;
+            status = s;
+        }
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+    }
 }

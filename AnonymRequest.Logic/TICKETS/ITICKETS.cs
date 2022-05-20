@@ -7,5 +7,6 @@ namespace AnonymRequest.Logic.TICKETS
         public Task<int> GetTicketByGuid(string guid);
         public Task<Tickets> GetTicketByID(int ticket_id);
         public Task<int> GetTicketInfoIDbyGUID(string guid);
+        public Task<List<int>> GetTicketInfoIdbyType(int type);
     }
 }
