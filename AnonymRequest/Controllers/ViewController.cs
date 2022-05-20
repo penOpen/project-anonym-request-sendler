@@ -52,7 +52,9 @@ namespace AnonymRequest.Controllers
             var ticketfiles = await Ticketfiles.GetFilesByTicketInfoId(ticket.id_ticketinfo);
             var ticketInfo = await Ticketinfo.Get_TicketInfo(ticket.id_ticketinfo);
 
-            return new ViewResponse(true, ticketInfo.name, ticketInfo.description, ticketfiles, ticketInfo.status, null, null).ToString();
+            var comments = await Comments.GetCommentsByTicketId(ticket_id);
+
+            return new ViewResponse(true, ticketInfo.name, ticketInfo.description, ticketfiles, ticketInfo.status, null, comments).ToString();
         }
 
         [HttpPut]
@@ -73,7 +75,7 @@ namespace AnonymRequest.Controllers
                 await CommentFiles.CreateCommentFiles(comment_id, id_file);
             }
 
-            var comments = await Comments.GetCommentsByTicketId(ticket_id, comment.Files);
+            var comments = await Comments.GetCommentsByTicketId(ticket_id);
 
             return new CommentResponse(comments).ToString();
         }

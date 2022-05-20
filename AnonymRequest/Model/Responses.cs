@@ -48,9 +48,9 @@ namespace AnonymRequest.Models
         public Logic.File?[] files { get; set; }
         public string status { get; set; }
         public Moder? moderator { get; set; }
-        public Comment?[] comments { get; set; }
+        public Logic.Comments?[] comments { get; set; }
 
-        public ViewResponse(bool Ok, string Name, string Description, Logic.File?[] Files, string Status, Moder Mod, Comment?[] Comments)
+        public ViewResponse(bool Ok, string Name, string Description, Logic.File?[] Files, string Status, Moder Mod, Logic.Comments?[] Comments)
         {
             ok = Ok;
             name = Name;
