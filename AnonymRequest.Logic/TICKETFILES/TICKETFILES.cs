@@ -23,7 +23,7 @@ namespace AnonymRequest.Logic.TICKETFILES
             var linkes = await _context.TicketFiles.Where(p => p.ticketinfo_id == ticketInfo_id).ToListAsync();
             foreach (var link in linkes)
             {
-                var raw_file = await _context.Files.OrderBy(p => p.Id == link.file_id).FirstOrDefaultAsync();
+                var raw_file = await _context.Files.Where(p => p.Id == link.file_id).FirstOrDefaultAsync();
                 var file = new File(raw_file.Name, raw_file.url);
                 files.Add(file);
             }

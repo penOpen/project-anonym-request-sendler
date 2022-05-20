@@ -9,7 +9,6 @@ namespace AnonymRequest.Controllers
     {
         private readonly ITICKETS Tickets;
         private readonly ITICKETTOKEN Token;
-
         public FindController(ITICKETS ticket, ITICKETTOKEN token)
         {
             Tickets = ticket;

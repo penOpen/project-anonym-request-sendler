@@ -3,8 +3,16 @@ import defaultUser from "./moderatorDefault.svg"
 
 function ViewTicketStatus(props) {
   const { state } = props
-  const { avatar, name } = state.moderator 
-  const status = -1
+  let avatar, name;
+  if (!state.moderator) {
+    avatar = null
+    name = "Олег"
+  }
+  else {
+    avatar = state.moderator.avatar;
+    name = state.moderator.name;
+  }
+  const status = +state.status
   let statusInfo = []
 
   switch(status) {

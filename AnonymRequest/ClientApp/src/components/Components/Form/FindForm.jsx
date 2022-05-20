@@ -14,20 +14,26 @@ function FindForm(props) {
     e.preventDefault()
     
     let [inputNodeElement] = document.getElementsByName("ticket_key")
-    const req = JSON.stringify({guid: inputNodeElement.value})
+    const req = {
+      gid: inputNodeElement.value
+    }
     
-    const fetchFind = getFetch("__find")
+    const fetchFind = getFetch("POSTfind")
 
-    const res = JSON.parse(await fetchFind(req))
-    if (!res.ok) {
+    const res = await fetchFind(req)
+    const resObject = await res.json()
+
+    if (!res.ok || !resObject.ok) {
       setOk(false)
 
       setTimeout(() => setOk(true), 5000)
 
       return false
     }
-    
-    let path = `/view/${res.value.guid}`;
+
+    let path = `/view/${resObject.guid}`;
+    window.localStorage.setItem(`${resObject.guid}`, `${resObject.token}`)
+
     navigate(path, {replace: true})
 
     return false

@@ -16,20 +16,27 @@ function View() {
   
   useEffect(() => {
     if (!state.isLoad) return;
-    const fetchView = getFetch("__view")
-    fetchView({guid}).then( // fetching data by component mount
-      (value) => {          // i know that it's a little callback hell
-        dispatch({type: "onload"})
-        const body = JSON.parse(value)
-        console.log(body)
-        if (!body.ok) {
-          dispatch({type: "fetchfailed"})
-          return
-        }
-        dispatch({type: "fetch", payload: body.value})
-      }
-    )
-  })
+    const fetchView = getFetch("POSTview")
+
+    fetchView({gid: guid, token: localStorage.getItem(guid)})
+      .then(value => value.json())
+      .then(res => {
+          console.log(res)
+          dispatch({type: "onload"})
+          if (!res.ok) {
+            dispatch({type: "fetchfailed"})
+            return
+          }
+          dispatch({type: "fetch", payload: res})
+        })
+    })
+        // const body = JSON.parse(value)
+        // console.log(body)
+        // if (!body.ok) {
+        //   dispatch({type: "fetchfailed"})
+        //   return
+        // }
+        // dispatch({type: "fetch", payload: body.value})
 
   return (
     <div className="wrap_view column-items center-items">
@@ -48,7 +55,7 @@ function View() {
         <div className="view column-items"> 
           <ViewTicketInfo dispatch={dispatch} state={state}/> 
           <ViewForm dispatch={dispatch} state={state}/>
-          <ViewTicketComments dispatch={dispatch} state={state}/>
+          {state.comments ? <ViewTicketComments dispatch={dispatch} state={state}/> : null}
         </div>
     }
     </div>

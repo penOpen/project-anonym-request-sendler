@@ -51,8 +51,8 @@ namespace AnonymRequest.Controllers
             for (int i = 0; i < len; i++)
             {
                 var temp_file = _js_file.Files[i];
-                file.name = temp_file.Name;
-                file.code = temp_file.Code;
+                file.name = temp_file.name;
+                file.code = temp_file.code;
                 var id_file = await Files.Push_File(file);
                 Console.WriteLine(id_file);
                 Console.WriteLine(id_of_files);

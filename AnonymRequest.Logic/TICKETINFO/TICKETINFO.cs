@@ -33,7 +33,7 @@ namespace AnonymRequest.Logic.TICKETINFO
 
         public async Task<TicketInfo> Get_TicketInfo(int id_ticket)
         {
-            var ticketinfo = await _context.TicketInfos.OrderBy(p => p.Id == id_ticket).FirstOrDefaultAsync();
+            var ticketinfo = await _context.TicketInfos.Where(p => p.Id == id_ticket).FirstOrDefaultAsync();
             return ticketinfo;
         }
     }

@@ -4,6 +4,7 @@ import ViewTicketStatus from "./ViewTicketStatus"
 
 function ViewTicketInfo(props) {
   const { state, dispatch } = props
+  console.log(state.files, state.files.length)
   return (
     <div 
       className='view__ticket_info'
@@ -21,10 +22,14 @@ function ViewTicketInfo(props) {
           <p className='view__text_info_headers'>Описание заявки:</p>
           <div className='view__text_info_text' disabled>{state.description}</div>
         </div>
-        <div className='wrap_view__images'>
-          <p className='view__text_info_headers'>Приложенные изображения:</p>
-          <ImagesBlock dispatch={dispatch} files={state.files} classes="view__images"/>
-        </div>
+        {
+          state.files && state.files.length ?
+          <div className='wrap_view__images'>
+            <p className='view__text_info_headers'>Приложенные изображения:</p>
+            <ImagesBlock dispatch={dispatch} files={state.files} classes="view__images"/>
+          </div>
+          : null
+        }
       </section>
       <ViewTicketStatus state={state}/>
     </div>

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AnonymRequest.Logic.COMMENT;
 using AnonymRequest.Logic.TICKETFILES;
+using AnonymRequest.Logic.TYPES;
 using AnonymRequest.Logic.MOD;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,7 @@ services.AddScoped<ITICKETS, TICKETS>();
 services.AddScoped<ITICKETTOKEN, TICKETTOKEN>();
 services.AddScoped<ITICKETFILES, TICKETFILES>();
 services.AddScoped<IMOD, MOD>();
+services.AddScoped<ITYPES, TYPE>();
 
 //Add Database Context
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");

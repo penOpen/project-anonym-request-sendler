@@ -31,11 +31,11 @@ namespace AnonymRequest.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/view")]
         public async Task<string> ViewGet([FromBody] ViewRequest _js_file)// ticket id <= guid, ticket id => token
         {
-            var ticket_id = await Tickets.GetTicketByGuid(_js_file.Gid);
+            var ticket_id = await Tickets.GetTicketByGuid(_js_file.Gid.ToUpper());
             if (ticket_id == -1) return new ViewResponse(false, "0", "0", null, "0", null, null).ToString();
             var token = await Tickettoken.GetTokenByGuid(_js_file.Gid);
             if (token == "-1" || token != _js_file.Token) return new ViewResponse(false, "0", "0", null, "0", null, null).ToString();

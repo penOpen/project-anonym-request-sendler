@@ -1,4 +1,6 @@
 import React from 'react'
+import {useNavigate} from "react-router-dom"
+import getFetch from '../../utils/fetches';
 import CreateSubmit from '../Btn/CreateSubmit';
 import ImagesBlock from '../Images/ImagesBlock';
 import CreateInputDescription from '../Input/CreateInputDescription';
@@ -8,8 +10,9 @@ import CreateTicketType from '../Input/CreateTicketType';
 
 function CreateForm(props) {
   const [state, dispatch] = props.state
+  const navigate = useNavigate()
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     
     const req = {
@@ -19,7 +22,15 @@ function CreateForm(props) {
       files: state.files
     }
 
+    const createFetch = getFetch("POSTcreate")
+
+    const res = await createFetch(req)
+    const resObject = await res.json()
     
+    let path = `/view/${resObject.guid}`;
+    window.localStorage.setItem(`${resObject.guid}`, `${resObject.token}`)
+
+    navigate(path, {replace: true})
 
     return false;
   }
