@@ -1,4 +1,5 @@
 using AnonymRequest.Storage;
+using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using AnonymRequest.Logic.FILES;
 using AnonymRequest.Logic.TICKETINFO;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AnonymRequest.Logic.COMMENT;
 using AnonymRequest.Logic.TICKETFILES;
+using AnonymRequest.Logic.MOD;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -21,11 +23,23 @@ services.AddScoped<ICOMMENT, COMMENT>();
 services.AddScoped<ITICKETS, TICKETS>();
 services.AddScoped<ITICKETTOKEN, TICKETTOKEN>();
 services.AddScoped<ITICKETFILES, TICKETFILES>();
+services.AddScoped<IMOD, MOD>();
 
 //Add Database Context
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 services.AddDbContext<Context>(param => param.UseSqlServer(connectionString));
 services.AddHttpClient();
+services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(
+            policy =>
+            {
+                policy.WithOrigins("https://localhost:44401");
+                policy.WithHeaders("Content-Type");
+            }
+            );
+    }
+);
 
 var app = builder.Build();
 
@@ -45,7 +59,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
+app.UseCors();
 
 app.UseAuthorization();
 
@@ -53,6 +67,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=index}/{id?}");
 
-app.MapFallbackToFile("index.html"); ;
-
+app.MapFallbackToFile("index.html");
 app.Run();

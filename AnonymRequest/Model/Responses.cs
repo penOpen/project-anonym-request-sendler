@@ -7,7 +7,7 @@ namespace AnonymRequest.Models
 
     }
 
-    public class CreateResponse:Responses
+    public class CreateResponse
     {
         public string token { get; set; }
         public string guid { get; set; }
@@ -64,6 +64,23 @@ namespace AnonymRequest.Models
         {
             return JsonSerializer.Serialize<ViewResponse>(this);
         }
+    }
+
+    public class LoginResponse
+    {
+        public string? token;
+        public bool? status;
+
+        public LoginResponse(string _token, bool _status)
+        {
+            token = _token;
+            status = _status;
+        }
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize<LoginResponse>(this);
+        }
+
     }
 
     public class Moder

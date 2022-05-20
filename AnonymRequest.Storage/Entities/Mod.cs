@@ -4,16 +4,14 @@ namespace AnonymRequest.Storage.Entities
     {
         [Key]
         public int Id { get; set; }//id ������
+        public string token { get; set; }
+        public int? avatar { get; set; }
 
-        public Guid token;// guid ������
-        public int avatar { get; set; } 
+        public int id_type { get; set; } //������ �� ������ (id �����)
         
-        public int id_type;//������ �� ������ (id �����)
-
         [ForeignKey(nameof(avatar))]
-        public virtual Files Avatar { get; set; }
+        public virtual Files? Avatar { get; set; }
         [ForeignKey(nameof(id_type))]
-        public virtual Types Type {get; set;}
-
+        public virtual Types Type { get; set; }
     }
 }

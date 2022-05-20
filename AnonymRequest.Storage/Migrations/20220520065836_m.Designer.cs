@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnonymRequest.Storage.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220518191407_test")]
-    partial class test
+    [Migration("20220520065836_m")]
+    partial class m
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,10 +39,15 @@ namespace AnonymRequest.Storage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ticket_id")
+                        .HasColumnType("int");
+
                     b.Property<long>("time")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ticket_id");
 
                     b.ToTable("Comments");
                 });
@@ -102,34 +107,16 @@ namespace AnonymRequest.Storage.Migrations
                     b.Property<int>("avatar")
                         .HasColumnType("int");
 
+                    b.Property<int>("id_type")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("avatar");
 
+                    b.HasIndex("id_type");
+
                     b.ToTable("Mods");
-                });
-
-            modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("comment_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ticket_id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("comment_id");
-
-                    b.HasIndex("ticket_id");
-
-                    b.ToTable("TicketComments");
                 });
 
             modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketFiles", b =>
@@ -140,35 +127,19 @@ namespace AnonymRequest.Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("File_id")
+                    b.Property<int>("file_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("ticket_id")
+                    b.Property<int>("ticketinfo_id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("File_id");
+                    b.HasIndex("file_id");
 
-                    b.HasIndex("ticket_id");
+                    b.HasIndex("ticketinfo_id");
 
                     b.ToTable("TicketFiles");
-                });
-
-            modelBuilder.Entity("AnonymRequest.Storage.Entities.Ticketguid", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<Guid>("token")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ticketguids");
                 });
 
             modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketInfo", b =>
@@ -179,15 +150,9 @@ namespace AnonymRequest.Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("comment_id")
-                        .HasColumnType("int");
-
                     b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("files_id")
-                        .HasColumnType("int");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -198,10 +163,6 @@ namespace AnonymRequest.Storage.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("comment_id");
-
-                    b.HasIndex("files_id");
 
                     b.ToTable("TicketInfos");
                 });
@@ -214,25 +175,20 @@ namespace AnonymRequest.Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("id_comments")
-                        .HasColumnType("int");
-
-                    b.Property<int>("id_mod")
-                        .HasColumnType("int");
-
                     b.Property<int>("id_ticketinfo")
                         .HasColumnType("int");
 
-                    b.Property<int>("status")
+                    b.Property<Guid>("token")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("typeid")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("id_comments");
-
-                    b.HasIndex("id_mod");
-
                     b.HasIndex("id_ticketinfo");
+
+                    b.HasIndex("typeid");
 
                     b.ToTable("Tickets");
                 });
@@ -245,12 +201,12 @@ namespace AnonymRequest.Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ticket_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("token")
+                    b.Property<string>("key_token")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ticket_id")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -280,6 +236,17 @@ namespace AnonymRequest.Storage.Migrations
                     b.ToTable("Types");
                 });
 
+            modelBuilder.Entity("AnonymRequest.Storage.Entities.Comment", b =>
+                {
+                    b.HasOne("AnonymRequest.Storage.Entities.Tickets", "Tickets")
+                        .WithMany()
+                        .HasForeignKey("ticket_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tickets");
+                });
+
             modelBuilder.Entity("AnonymRequest.Storage.Entities.CommentFiles", b =>
                 {
                     b.HasOne("AnonymRequest.Storage.Entities.Comment", "Comment")
@@ -307,91 +274,53 @@ namespace AnonymRequest.Storage.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AnonymRequest.Storage.Entities.Types", "Type")
+                        .WithMany()
+                        .HasForeignKey("id_type")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Avatar");
-                });
 
-            modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketComment", b =>
-                {
-                    b.HasOne("AnonymRequest.Storage.Entities.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("comment_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AnonymRequest.Storage.Entities.Tickets", "Tickets")
-                        .WithMany()
-                        .HasForeignKey("ticket_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("Tickets");
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketFiles", b =>
                 {
                     b.HasOne("AnonymRequest.Storage.Entities.Files", "Files")
                         .WithMany()
-                        .HasForeignKey("File_id")
+                        .HasForeignKey("file_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AnonymRequest.Storage.Entities.Tickets", "Ticket")
+                    b.HasOne("AnonymRequest.Storage.Entities.TicketInfo", "Ticketinfo")
                         .WithMany()
-                        .HasForeignKey("ticket_id")
+                        .HasForeignKey("ticketinfo_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Files");
 
-                    b.Navigation("Ticket");
-                });
-
-            modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketInfo", b =>
-                {
-                    b.HasOne("AnonymRequest.Storage.Entities.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("comment_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AnonymRequest.Storage.Entities.Files", "Files")
-                        .WithMany()
-                        .HasForeignKey("files_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("Files");
+                    b.Navigation("Ticketinfo");
                 });
 
             modelBuilder.Entity("AnonymRequest.Storage.Entities.Tickets", b =>
                 {
-                    b.HasOne("AnonymRequest.Storage.Entities.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("id_comments")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AnonymRequest.Storage.Entities.Mod", "Mod")
-                        .WithMany()
-                        .HasForeignKey("id_mod")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AnonymRequest.Storage.Entities.TicketInfo", "Ticketinfo")
                         .WithMany()
                         .HasForeignKey("id_ticketinfo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Comment");
-
-                    b.Navigation("Mod");
+                    b.HasOne("AnonymRequest.Storage.Entities.Types", "Type")
+                        .WithMany()
+                        .HasForeignKey("typeid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Ticketinfo");
+
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("AnonymRequest.Storage.Entities.TicketToken", b =>

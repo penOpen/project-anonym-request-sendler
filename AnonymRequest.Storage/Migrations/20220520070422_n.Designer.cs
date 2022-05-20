@@ -4,6 +4,7 @@ using AnonymRequest.Storage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnonymRequest.Storage.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220520070422_n")]
+    partial class n
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,7 +104,7 @@ namespace AnonymRequest.Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("avatar")
+                    b.Property<int>("avatar")
                         .HasColumnType("int");
 
                     b.Property<int>("id_type")
@@ -272,7 +274,9 @@ namespace AnonymRequest.Storage.Migrations
                 {
                     b.HasOne("AnonymRequest.Storage.Entities.Files", "Avatar")
                         .WithMany()
-                        .HasForeignKey("avatar");
+                        .HasForeignKey("avatar")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AnonymRequest.Storage.Entities.Types", "Type")
                         .WithMany()

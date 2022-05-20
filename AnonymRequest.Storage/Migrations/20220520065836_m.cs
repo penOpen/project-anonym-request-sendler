@@ -5,25 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AnonymRequest.Storage.Migrations
 {
-    public partial class test : Migration
+    public partial class m : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    is_mod = table.Column<bool>(type: "bit", nullable: false),
-                    text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    time = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Files",
                 columns: table => new
@@ -39,16 +24,18 @@ namespace AnonymRequest.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ticketguids",
+                name: "TicketInfos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    token = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ticketguids", x => x.Id);
+                    table.PrimaryKey("PK_TicketInfos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,6 +50,127 @@ namespace AnonymRequest.Storage.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Types", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TicketFiles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    file_id = table.Column<int>(type: "int", nullable: false),
+                    ticketinfo_id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TicketFiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TicketFiles_Files_file_id",
+                        column: x => x.file_id,
+                        principalTable: "Files",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TicketFiles_TicketInfos_ticketinfo_id",
+                        column: x => x.ticketinfo_id,
+                        principalTable: "TicketInfos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Mods",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    avatar = table.Column<int>(type: "int", nullable: false),
+                    id_type = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mods", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Mods_Files_avatar",
+                        column: x => x.avatar,
+                        principalTable: "Files",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Mods_Types_id_type",
+                        column: x => x.id_type,
+                        principalTable: "Types",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tickets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id_ticketinfo = table.Column<int>(type: "int", nullable: false),
+                    token = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    typeid = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tickets_TicketInfos_id_ticketinfo",
+                        column: x => x.id_ticketinfo,
+                        principalTable: "TicketInfos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tickets_Types_typeid",
+                        column: x => x.typeid,
+                        principalTable: "Types",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    is_mod = table.Column<bool>(type: "bit", nullable: false),
+                    text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    time = table.Column<long>(type: "bigint", nullable: false),
+                    ticket_id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_Tickets_ticket_id",
+                        column: x => x.ticket_id,
+                        principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TicketTokens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    key_token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ticket_id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TicketTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TicketTokens_Tickets_ticket_id",
+                        column: x => x.ticket_id,
+                        principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -91,160 +199,6 @@ namespace AnonymRequest.Storage.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Mods",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    avatar = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Mods", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Mods_Files_avatar",
-                        column: x => x.avatar,
-                        principalTable: "Files",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TicketInfos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    files_id = table.Column<int>(type: "int", nullable: false),
-                    comment_id = table.Column<int>(type: "int", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    status = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TicketInfos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TicketInfos_Comments_comment_id",
-                        column: x => x.comment_id,
-                        principalTable: "Comments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TicketInfos_Files_files_id",
-                        column: x => x.files_id,
-                        principalTable: "Files",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tickets",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    id_mod = table.Column<int>(type: "int", nullable: false),
-                    id_ticketinfo = table.Column<int>(type: "int", nullable: false),
-                    id_comments = table.Column<int>(type: "int", nullable: false),
-                    status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tickets", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tickets_Comments_id_comments",
-                        column: x => x.id_comments,
-                        principalTable: "Comments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Tickets_Mods_id_mod",
-                        column: x => x.id_mod,
-                        principalTable: "Mods",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Tickets_TicketInfos_id_ticketinfo",
-                        column: x => x.id_ticketinfo,
-                        principalTable: "TicketInfos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TicketComments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ticket_id = table.Column<int>(type: "int", nullable: false),
-                    comment_id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TicketComments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TicketComments_Comments_comment_id",
-                        column: x => x.comment_id,
-                        principalTable: "Comments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TicketComments_Tickets_ticket_id",
-                        column: x => x.ticket_id,
-                        principalTable: "Tickets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TicketFiles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    File_id = table.Column<int>(type: "int", nullable: false),
-                    ticket_id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TicketFiles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TicketFiles_Files_File_id",
-                        column: x => x.File_id,
-                        principalTable: "Files",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TicketFiles_Tickets_ticket_id",
-                        column: x => x.ticket_id,
-                        principalTable: "Tickets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TicketTokens",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    token = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ticket_id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TicketTokens", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TicketTokens_Tickets_ticket_id",
-                        column: x => x.ticket_id,
-                        principalTable: "Tickets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_CommentFiles_comment_id",
                 table: "CommentFiles",
@@ -256,54 +210,39 @@ namespace AnonymRequest.Storage.Migrations
                 column: "file_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_ticket_id",
+                table: "Comments",
+                column: "ticket_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Mods_avatar",
                 table: "Mods",
                 column: "avatar");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TicketComments_comment_id",
-                table: "TicketComments",
-                column: "comment_id");
+                name: "IX_Mods_id_type",
+                table: "Mods",
+                column: "id_type");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TicketComments_ticket_id",
-                table: "TicketComments",
-                column: "ticket_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TicketFiles_File_id",
+                name: "IX_TicketFiles_file_id",
                 table: "TicketFiles",
-                column: "File_id");
+                column: "file_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TicketFiles_ticket_id",
+                name: "IX_TicketFiles_ticketinfo_id",
                 table: "TicketFiles",
-                column: "ticket_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TicketInfos_comment_id",
-                table: "TicketInfos",
-                column: "comment_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TicketInfos_files_id",
-                table: "TicketInfos",
-                column: "files_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_id_comments",
-                table: "Tickets",
-                column: "id_comments");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_id_mod",
-                table: "Tickets",
-                column: "id_mod");
+                column: "ticketinfo_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_id_ticketinfo",
                 table: "Tickets",
                 column: "id_ticketinfo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_typeid",
+                table: "Tickets",
+                column: "typeid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TicketTokens_ticket_id",
@@ -317,34 +256,28 @@ namespace AnonymRequest.Storage.Migrations
                 name: "CommentFiles");
 
             migrationBuilder.DropTable(
-                name: "TicketComments");
+                name: "Mods");
 
             migrationBuilder.DropTable(
                 name: "TicketFiles");
 
             migrationBuilder.DropTable(
-                name: "Ticketguids");
-
-            migrationBuilder.DropTable(
                 name: "TicketTokens");
-
-            migrationBuilder.DropTable(
-                name: "Types");
-
-            migrationBuilder.DropTable(
-                name: "Tickets");
-
-            migrationBuilder.DropTable(
-                name: "Mods");
-
-            migrationBuilder.DropTable(
-                name: "TicketInfos");
 
             migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Files");
+
+            migrationBuilder.DropTable(
+                name: "Tickets");
+
+            migrationBuilder.DropTable(
+                name: "TicketInfos");
+
+            migrationBuilder.DropTable(
+                name: "Types");
         }
     }
 }

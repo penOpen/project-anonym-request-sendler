@@ -7,7 +7,6 @@ using AnonymRequest.Logic.TICKETS;
 using AnonymRequest.Logic.TICKETTOKEN;
 using AnonymRequest.Logic.TICKETFILES;
 using AnonymRequest.Storage;
-using Microsoft.EntityFrameworkCore;
 using AnonymRequest.Logic;
 using System.Text.Json;
 using System.Text.Json.Serialization;

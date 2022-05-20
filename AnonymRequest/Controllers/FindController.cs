@@ -16,11 +16,10 @@ namespace AnonymRequest.Controllers
             Token = token;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/find")]
         public async Task<string> Find([FromBody] FindRequest _js_file)
         {
- 
             var guid = _js_file.Gid;
             var ticket = await Tickets.GetTicketByGuid(guid);
 

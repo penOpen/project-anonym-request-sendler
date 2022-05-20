@@ -39,5 +39,13 @@ namespace AnonymRequest.Models
         }
     }
 
+    public class LoginRequest
+    {
+        public string? Token { get; set; }
 
+        public LoginRequest(string token)
+        {
+            Token = token;
+        }
+    }
 }
