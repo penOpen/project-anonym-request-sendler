@@ -32,7 +32,7 @@ namespace AnonymRequest.Logic.TICKETS
 
         public async Task<int> GetTicketByGuid(string guid)
         {
-            var ticket = await _context.Tickets.FirstOrDefaultAsync(p => p.token.ToString() == guid);
+            var ticket = await _context.Tickets.Where(p => p.token.ToString() == guid).FirstOrDefaultAsync();
             if (ticket == null) return -1;
             return ticket.Id;
         }
@@ -45,7 +45,11 @@ namespace AnonymRequest.Logic.TICKETS
 
         public async Task<int> GetTicketInfoIDbyGUID(string guid)
         {
-            var ticket = await _context.Tickets.FirstOrDefaultAsync(p => p.token.ToString() == guid);
+            
+            var ticket = await _context.Tickets
+                .Where(p => p.token.ToString() == guid)
+                .FirstOrDefaultAsync();
+
             if (ticket == null) return -1;
             return ticket.id_ticketinfo;
         }

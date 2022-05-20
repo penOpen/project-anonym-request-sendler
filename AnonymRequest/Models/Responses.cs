@@ -128,7 +128,7 @@ namespace AnonymRequest.Models
     }
     public class UpdateResponse
     {
-        public string? status;
+        public string? status { get; set; }
 
         public UpdateResponse(string s)
         {

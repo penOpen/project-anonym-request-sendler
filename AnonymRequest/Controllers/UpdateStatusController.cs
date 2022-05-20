@@ -22,7 +22,8 @@ namespace AnonymRequest.Controllers
         [Route("api/account")]
         public async Task<string> Update_Status([FromBody] UpdateRequest update)
         {
-            if (Mod.Find_Moderator(update.Token) == null)
+            var mod = await Mod.Find_Moderator(update.Token);
+            if ( mod == null)
             {
                 return new UpdateResponse("false").ToString();
             }
