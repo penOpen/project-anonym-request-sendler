@@ -49,5 +49,19 @@ namespace AnonymRequest.Models
         }
     }
 
+    public class CommentRequest
+    {
+        public string? Text { get; set; }
+        public Logic.File?[] Files { get; set; }
+        public bool IsLogged { get; set; }
+        public int Ticket_id { get; set; }
 
+        public CommentRequest(string? text, Logic.File?[] files, bool isLogged, int ticket_id)
+        {
+            Text = text;
+            Files = files;
+            IsLogged = isLogged;
+            Ticket_id = ticket_id;
+        }
+    }
 }

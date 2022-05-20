@@ -96,6 +96,20 @@ namespace AnonymRequest.Models
 
     }
 
+    public class CommentResponse
+    {
+        int time { get; set; }
+        string type { get; set; }
+        int id { set; get; }
+
+        public CommentResponse(int Time, string Type, int Id)
+        {
+            time = Time;
+            type = Type;
+            id = Id;
+        }
+    }
+
     public class Comment
     {
         public int id { get; set; }
@@ -110,6 +124,7 @@ namespace AnonymRequest.Models
             text = Text;
             files = Files;
         }
-    }
+    
+
 
 }
