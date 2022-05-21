@@ -1,0 +1,65 @@
+.account__tickets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.account__ticket {
+  border-radius: 8px;
+  display: flex;
+  width: 300px;
+  height: 200px;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-between;
+  border: 1px solid black;
+  color: black;
+  margin: 5px;
+  background-color: darkmagenta;
+}
+
+.account__ticket_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  flex-basis: 25%;
+  padding-bottom: 5px;
+  justify-content: space-between;
+}
+.account__ticket_header select {
+  height: 100%;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  transition: all 0.5s;
+}
+.account__ticket_header select:hover {
+  color: black;
+  background-color: rgb(255, 197, 89);
+  border: 1px solid white;
+}
+.account__ticket_name {
+  flex-basis: 70%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+  height: 2.1rem;
+  padding: 0px 5px;
+  font-size: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.account__ticket_desc {
+  overflow-wrap: break-word;
+  background-color: lightgray;
+  border: 1px;
+  overflow: auto;
+  padding: 5px;
+  flex-basis: 72%;
+}

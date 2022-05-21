@@ -5,6 +5,12 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+iframe {
+  z-index: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+
 .content {
   position: relative;
   width: 100%;

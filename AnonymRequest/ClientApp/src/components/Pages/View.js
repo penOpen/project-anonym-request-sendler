@@ -7,6 +7,7 @@ import ViewForm from '../Components/Form/ViewForm'
 import CreateModalImage from '../Components/Modal/CreateModalImage'
 import getFetch from "../utils/fetches"
 import getStateManagement from "../utils/redusers"
+import Spinner from '../Components/Modal/Spinner'
 import "./View.css"
 import ViewTicketGuid from '../Components/Blocks/ViewTicketGuid'
 
@@ -53,7 +54,7 @@ function View() {
       : null
     }
     {   state.isLoad 
-      ? <div className='loader'></div>
+      ? <Spinner/>
       : state.isError 
       ? <ViewErrorFindingText/> //block for fatal error
       : 

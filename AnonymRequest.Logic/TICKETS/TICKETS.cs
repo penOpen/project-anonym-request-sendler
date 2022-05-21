@@ -1,4 +1,5 @@
 using AnonymRequest.Storage.Entities;
+
 namespace AnonymRequest.Logic.TICKETS
 {
     public class TICKETS : ITICKETS
@@ -30,6 +31,12 @@ namespace AnonymRequest.Logic.TICKETS
             return ticket.token.ToString();
         }
 
+        public async Task<string> GetGuidByTicketInfo(int ticketInfoId)
+        {
+            var ticket = await _context.Tickets.FirstOrDefaultAsync(p => p.id_ticketinfo == ticketInfoId);
+            return ticket.token.ToString();
+        }
+
         public async Task<int> GetTicketByGuid(string guid)
         {
             var ticket = await _context.Tickets.Where(p => p.token.ToString() == guid).FirstOrDefaultAsync();
@@ -41,6 +48,30 @@ namespace AnonymRequest.Logic.TICKETS
         {
             var ticket = await _context.Tickets.Where(p=>p.Id == ticket_id).FirstOrDefaultAsync();
             return ticket;
+        }
+
+        public async Task<int> GetTicketInfoIDbyGUID(string guid)
+        {
+            var ticket = await _context.Tickets
+                .Where(p => p.token.ToString() == guid)
+                .FirstOrDefaultAsync();
+
+            if (ticket == null) return -1;
+            return ticket.id_ticketinfo;
+        }
+
+        public async Task<List<int>> GetTicketInfoIdbyType(int type)
+        {
+            var ticket = await _context.Tickets
+                .Where(p => p.typeid == type)
+                .ToArrayAsync();
+            List<int> id_ticketinfo = new List<int>();
+            foreach (var elem in ticket)
+            {
+                id_ticketinfo.Add(elem.id_ticketinfo);
+            }
+
+            return id_ticketinfo;
         }
     }
 }

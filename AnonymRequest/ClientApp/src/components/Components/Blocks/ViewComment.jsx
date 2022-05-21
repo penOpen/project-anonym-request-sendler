@@ -3,6 +3,7 @@ import ImagesBlock from '../Images/ImagesBlock'
 
 function ViewComment(props) {
   const { comment, dispatch } = props
+  
   return (
     <div
       className='view__comment'
@@ -10,7 +11,7 @@ function ViewComment(props) {
       <div className='view__comment_text_info'>
         <div className='view__comment_header'>
           <p>№{comment.id}</p>
-          <p>{comment.isMod ? "Модератор" : "Вы"} в {(new Date(comment.time)).toDateString()}</p>
+          <p>{comment.isMod ? "Модератор" : "Вы"} в {new Date(comment.time).toLocaleString()}</p>
         </div>
         <p className='view__comment_text'>{comment.text}</p>
       </div>

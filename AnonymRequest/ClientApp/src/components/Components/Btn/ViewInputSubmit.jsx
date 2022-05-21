@@ -5,6 +5,7 @@ function ViewInputSubmit() {
     <input 
       type={"submit"} 
       className='view__form_submit'
+      value={"Отправить"}
     />
   )
 }

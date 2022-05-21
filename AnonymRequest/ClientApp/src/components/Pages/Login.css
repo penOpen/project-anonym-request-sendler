@@ -1,0 +1,41 @@
+.login p {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.login__form {
+  background-color: orange;
+  height: 15vh;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+  border-radius: 16px;
+}
+
+.login__input_token {
+  padding: 10px;
+  width: 70%;
+  border-radius: 8px;
+  border: 0;
+  font-size: 1.25rem;
+}
+
+.login__submit {
+  background-color: white;
+  height: 3rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 10rem;
+  transition: all 0.5s;
+  border-radius: 8px;
+  border: 2px solid black;
+}
+
+.login__submit:hover {
+  background-color: darkmagenta;
+  color: white;
+  border-color: white;
+}

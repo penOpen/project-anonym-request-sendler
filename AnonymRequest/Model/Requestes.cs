@@ -61,4 +61,28 @@ namespace AnonymRequest.Models
             Time = time;
         }
     }
+
+    public class UpdateRequest
+    {
+        public string? Token { get; set; }
+        public string? Gid { get; set; }
+        public string? Status { get; set; }
+
+        public UpdateRequest(string token, string gid, string status)
+        {
+            Token = token;
+            Gid = gid;
+            Status = status;
+        }
+    }
+
+    public class ViewTicketsRequest
+    {
+        public string? Token { get; set; }
+
+        public ViewTicketsRequest(string token)
+        {
+            Token = token;
+        }
+    }
 }

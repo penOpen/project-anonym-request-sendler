@@ -12,6 +12,10 @@ export default function getStateManagement(page) {
       return createState()
     case "view":
       return viewState()
+    case "login":
+      return loginState()
+    case "account":
+      return accountState()
     default:
       return null
   }
@@ -70,6 +74,85 @@ function createState() {
         }
       
       default: return {...state}
+    }
+  }
+
+  return [reducer, initialState]
+}
+
+function loginState() {
+  const initialState = {
+    token: "",
+    isError: false,
+    fetchLoading: false
+  }
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "inputchange":
+        return {
+          ...state,
+          token: action.payload
+        }
+      case "fetchStarted":
+        return {
+          ...state,
+          fetchLoading: true
+        }
+      case "fetchEnd":
+        return {
+          ...state,
+          fetchLoading: false
+        }
+      case "onerr":
+        setTimeout(() => state.isError = false, 5000)
+        return {
+          ...state,
+          isError: true
+        }
+      default:
+        return {
+          ...state
+        }
+    }
+  }
+
+  return [reducer, initialState]
+}
+
+function accountState() {
+  const initialState = {
+    token: localStorage.getItem("__api_token"),
+    tickets: [],
+    isLoad: true,
+    isError: false
+  }
+  function reducer(state, action) {
+    switch (action.type) {
+      case "onerr":
+        return {
+          ...state,
+          isError: true
+        }
+      case "onload":
+        return {
+          ...state,
+          isLoad: false
+        }
+      case "fetch":
+        return {
+          ...state,
+          tickets: action.payload
+        }
+      case "statusChanged":
+        return {
+          ...state,
+          tickets: action.payload
+        }
+      default:
+        return {
+          ...state
+        }
     }
   }
 

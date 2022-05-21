@@ -1,6 +1,6 @@
 /**
  * Returns fetch what you need. Dev fetches starts with "__"
- * @param {'POSTview' | 'POSTfind' | 'POSTcreate' | 'PUTview'} type type of fetch
+ * @param {'POSTaccount' | 'PUTaccount' | 'POSTlogin' | 'POSTview' | 'POSTfind' | 'POSTcreate' | 'PUTview'} type type of fetch
  * @return {(options) => Promise<string>} fetch
  * @example 
  * const fetch = getFetch("__view")
@@ -16,6 +16,12 @@ export default function getFetch(type) {
       return _createFetchPost
     case "PUTview":
       return _viewFetchPut
+    case "POSTlogin":
+      return _loginFetchPost
+    case "POSTaccount":
+      return _accountFetchPost
+    case "PUTaccount":
+      return _accountFetchPut
     default:
       return null
   }
@@ -23,6 +29,21 @@ export default function getFetch(type) {
 
 async function _viewFetchPost(body) {
   const res = await postData('https://localhost:7144/api/view', body)
+  return res
+}
+
+async function _loginFetchPost(body) {
+  const res = await postData('https://localhost:7144/api/login', body)
+  return res
+}
+
+async function _accountFetchPost(body) {
+  const res = await postData('https://localhost:7144/api/account', body)
+  return res
+}
+
+async function _accountFetchPut(body) {
+  const res = await putData('https://localhost:7144/api/account', body)
   return res
 }
 

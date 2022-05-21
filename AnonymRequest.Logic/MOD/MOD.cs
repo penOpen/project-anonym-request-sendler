@@ -9,11 +9,17 @@
             _context = context;
         }
 
-        public async Task<Mod> Find_Moderator(string key)
+        public async Task<Mod?> Find_Moderator(string key)
         {
-            var found_mod = await _context.Mods.OrderBy(p => p.token == key).FirstOrDefaultAsync();
+            var found_mod = await _context.Mods.Where(p => p.token == key).FirstOrDefaultAsync();
             return found_mod;
 
+        }
+
+        public async Task<int?> Get_Type_Of_Moderator(string key)
+        {
+            var found_mod = await _context.Mods.Where(p => p.token == key).FirstOrDefaultAsync();
+            return found_mod?.id_type;
         }
 
     }

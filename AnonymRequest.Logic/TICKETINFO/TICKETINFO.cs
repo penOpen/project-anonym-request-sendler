@@ -36,6 +36,13 @@ namespace AnonymRequest.Logic.TICKETINFO
             var ticketinfo = await _context.TicketInfos.Where(p => p.Id == id_ticket).FirstOrDefaultAsync();
             return ticketinfo;
         }
+
+        public async Task Update_Status(int id_ticket, string new_status)
+        {
+            var ticket = await _context.TicketInfos.Where(p => p.Id == id_ticket).FirstOrDefaultAsync();
+            ticket.status = new_status;
+            await _context.SaveChangesAsync();
+        }
     }
 
 

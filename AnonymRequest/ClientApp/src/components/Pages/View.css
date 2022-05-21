@@ -236,7 +236,6 @@
   display: none;
 }
 
-
 .view__form_images div {
   margin: 0 5px;
 }
@@ -247,32 +246,6 @@
   flex-basis: 30%;
   height: 3rem;
   border: 0;
-}
-
-.loader {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-.loader:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #000;
-  border-color: #000 #000 #000 transparent;
-  animation: loader-ring 1.2s infinite cubic-bezier(.29, 1.01, 1, -0.68);
-}
-
-@keyframes loader-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @media screen and (max-width: 619px) {

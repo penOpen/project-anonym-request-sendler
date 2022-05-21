@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Newtonsoft;
 
 namespace AnonymRequest.Models
 {
@@ -68,8 +69,8 @@ namespace AnonymRequest.Models
 
     public class LoginResponse
     {
-        public string? token;
-        public bool? status;
+        public string? token { get; set; }
+        public bool? status { get; set; }
 
         public LoginResponse(string _token, bool _status)
         {
@@ -120,6 +121,51 @@ namespace AnonymRequest.Models
             isMod = IsMod;
             text = Text;
             files = Files;
+        }
+    }
+    public class UpdateResponse
+    {
+        public bool status { get; set; }
+
+        public UpdateResponse(bool s)
+        {
+            status = s;
+        }
+
+        public override string ToString()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+        }
+    }
+
+    public class AccountTicket
+    {
+        public string name { get; set; }
+        public string description { get; set; }
+        public string status { get; set; }
+        public string guid { get; set; }
+        public string token { get; set; }
+        public AccountTicket(string n, string d, string s, string g, string t)
+        {
+            name = n;
+            description = d;
+            status = s;
+            guid = g;
+            token = t;
+        }
+    }
+    public class ViewTicketsResponse
+    {
+        public bool ok { get; set; }
+        public AccountTicket?[] tickets { get; set; }
+        public ViewTicketsResponse(bool o, AccountTicket?[] t)
+        {
+            ok = o;
+            tickets = t;
+        }
+        public override string ToString()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
     }
 }
