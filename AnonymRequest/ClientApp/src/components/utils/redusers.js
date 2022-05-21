@@ -183,7 +183,7 @@ function viewState() {
     status: 0,
     type: "0",
     files: [],
-    isMod: false,
+    isMod: localStorage.getItem("__api_token") ? true : false,
     moderator: {
       name: "noid",
       avatar: "png-transparent-user-computer-icons-user-miscellaneous-cdr-rectangle.png"
@@ -237,6 +237,8 @@ function viewState() {
           }
         }
       case "commentsUpdate":
+        console.log(document.querySelector(".view__form_text > textarea"));
+        document.querySelector(".view__form_text > textarea").value = "";
         return {
           ...state,
           newComment: {
