@@ -6,7 +6,7 @@ function ViewComment(props) {
   
   return (
     <div
-      className='view__comment'
+      className={`view__comment ${comment.isMod ? "view__comment_mod" : ""}`}
     >
       <div className='view__comment_text_info'>
         <div className='view__comment_header'>
