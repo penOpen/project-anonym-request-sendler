@@ -40,7 +40,7 @@ function ViewInputImages(props) {
   return (
     <div className='wrap_view__form_images'>
       <label className='view__form_images_upload' htmlFor='view__upload'> </label>
-      <input name='view__upload' id='view__upload' type={"file"} multiple onChange={onChange}/>
+      <input name='view__upload' id='view__upload' type={"file"} multiple onChange={onChange} accept=".png,.jpg,.jpeg"/>
       
       { state.newComment.files.length 
         ? <ImagesBlock files={state.newComment.files} dispatch={dispatch} classes={"view__form_images"}/>
