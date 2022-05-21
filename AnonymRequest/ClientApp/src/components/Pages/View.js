@@ -23,7 +23,6 @@ function View() {
     fetchView({gid: guid, token: localStorage.getItem(guid)})
       .then(value => value.json())
       .then(res => {
-          console.log(res)
           dispatch({type: "onload"})
           if (!res.ok) {
             dispatch({type: "fetchfailed"})

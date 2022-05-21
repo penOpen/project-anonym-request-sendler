@@ -53,6 +53,27 @@
   border: 1px solid black;
   font-size: 1rem !important;
 }
+.view__form_error_text {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  padding: 10px;
+  background-color: orange;
+  color: white;
+  animation: unopacity 10s linear;
+}
+
+@keyframes unopacity {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+
 .view__text_info_headers {
   margin-bottom: 10px;
   font-size: 2rem;

@@ -18,12 +18,18 @@ function ViewInputImages(props) {
 
   async function onChange(e) {
     const fileList = e.target.files
-    const parsedFiles = await filesToURL(fileList)
+    if (fileList.length > 2) return
+    const filteredFiles = []
+    for (let f of fileList) {
+      if (["image/jpeg", "image/png", "image/jpg"].includes(f.type)) filteredFiles.push(f)
+    }
+    if (!filteredFiles.length) return
+    const parsedFiles = await filesToURL(filteredFiles)
     const merge = []
-    for (let i = 0; i < fileList.length; i++) {
+    for (let i = 0; i < filteredFiles.length; i++) {
       merge.push(
         {
-          name: fileList[i].name, 
+          name: filteredFiles[i].name, 
           code: parsedFiles[i]
         }
       )

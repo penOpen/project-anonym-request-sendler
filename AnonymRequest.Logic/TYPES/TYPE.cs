@@ -16,7 +16,7 @@ namespace AnonymRequest.Logic.TYPES
     
         public async Task<int> GetTypeIDByValue(string value)
         {
-            var typeid = await _context.Types.OrderBy(p=>p.value == value).FirstOrDefaultAsync();
+            var typeid = await _context.Types.Where(p=>p.value == value).FirstOrDefaultAsync();
             return typeid.Id;
         }
     }

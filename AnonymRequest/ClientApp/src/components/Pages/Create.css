@@ -9,6 +9,26 @@
   align-items: flex-start;
   padding: 20px 30px;
 }
+.create__error_text {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  padding: 10px;
+  background-color: darkmagenta;
+  color: white;
+  animation: unopacity 10s linear;
+}
+
+@keyframes unopacity {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
 
 .create__input {
   margin-bottom: 20px;

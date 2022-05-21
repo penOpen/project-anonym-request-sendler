@@ -24,10 +24,11 @@ export default function getStateManagement(page) {
 
 function createState() {
   const initialState = {
-    type: "0",
+    type: "1",
     name: "Untitled",
     description: "No description",
     files: [],
+    isError: false,
     modalClicked: {
       ok: false
     }
@@ -71,6 +72,16 @@ function createState() {
           modalClicked: {
             ok: false
           }
+        }
+      case "formReqErr":
+        return {
+          ...state,
+          isError: true
+        }
+      case "errfalse": 
+        return {
+          ...state,
+          isError: false
         }
       
       default: return {...state}

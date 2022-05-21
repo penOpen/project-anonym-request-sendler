@@ -4,7 +4,6 @@ import ViewTicketStatus from "./ViewTicketStatus"
 
 function ViewTicketInfo(props) {
   const { state, dispatch } = props
-  console.log(state.files, state.files.length)
   return (
     <div 
       className='view__ticket_info'

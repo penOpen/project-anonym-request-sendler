@@ -27,6 +27,8 @@ function EULA() {
       <img src={w} alt={":("}></img>
       <img src={r} alt={":("}></img>
       <img src={t} alt={":("}></img>
+      <h2>В случае сдачи</h2>
+      <video controls src='videoplayback.mp4'/>
     </div>
   )
 }

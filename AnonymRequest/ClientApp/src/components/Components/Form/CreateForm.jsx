@@ -6,6 +6,7 @@ import ImagesBlock from '../Images/ImagesBlock';
 import CreateInputDescription from '../Input/CreateInputDescription';
 import CreateInputFiles from '../Input/CreateInputFiles';
 import CreateInputName from '../Input/CreateInputName';
+import CreateErrorText from '../Modal/CreateErrorText';
 import CreateTicketType from '../Input/CreateTicketType';
 
 function CreateForm(props) {
@@ -15,6 +16,12 @@ function CreateForm(props) {
   async function onSubmit(e) {
     e.preventDefault();
     
+    if (!(Array.apply({}, e.target))[1].value || !(Array.apply({}, e.target))[2].value) {
+      dispatch({type: "formReqErr"})
+      setTimeout(() => dispatch({type: "errfalse"}), 10000)
+      return
+    }
+
     const req = {
       type: state.type,
       name: state.name,
@@ -67,6 +74,9 @@ function CreateForm(props) {
           onChange={onChangeFabric("files", dispatch)}
           dispatch={dispatch} 
         />
+        { state.isError 
+          ? <CreateErrorText/>
+          : null}
         <CreateSubmit/>
       </div>
       { 

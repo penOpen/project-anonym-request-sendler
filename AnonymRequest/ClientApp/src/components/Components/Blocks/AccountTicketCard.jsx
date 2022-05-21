@@ -11,7 +11,6 @@ function AccountTicketCard(props) {
   }
   const onChange = async (e) => {
     const fetchAccount = getFetch("PUTaccount")
-    console.log(e.target)
     const req = {
       token: localStorage.getItem("__api_token"),
       gid: e.target.closest(".account__ticket").dataset.guid,

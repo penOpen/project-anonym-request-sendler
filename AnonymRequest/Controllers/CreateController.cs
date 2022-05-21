@@ -52,8 +52,6 @@ namespace AnonymRequest.Controllers
                 var temp_file = _js_file.Files[i];
                 Logic.File file = new Logic.File(temp_file.name, temp_file.code);
                 var id_file = await Files.Push_File(file);
-                Console.WriteLine(id_file);
-                Console.WriteLine(id_of_files);
                 id_of_files.Add(id_file);
             }
             var info = new js_parsed(_js_file.Type, _js_file.Name, _js_file.Description);

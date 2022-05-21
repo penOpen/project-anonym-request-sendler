@@ -10,6 +10,9 @@ function ViewForm(props) {
 
   async function onSubmit(e) {
     e.preventDefault();
+    if (!(Array.apply({}, e.target))[0].value) {
+      return;
+    }
 
     const req = {
       isLogged: state.isMod.toString(),
@@ -22,7 +25,6 @@ function ViewForm(props) {
     const viewFormFetch = getFetch("PUTview")
     const res = await viewFormFetch(req)
     const resObj = await res.json()
-    console.log(resObj)
 
     if (!res.ok) return false
 
